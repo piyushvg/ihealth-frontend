@@ -80,7 +80,7 @@ const SignIn = () => {
 
             <div className="w_100 flex">
               <a href="#">Forgot password? Reset</a>
-              <a href="#">Not a member?</a>
+              <a href="onboarding1">Not a member?</a>
             </div>
             <div className="w_100 center">
               <input type="submit" value=" Sign in" className="btn_log" />
