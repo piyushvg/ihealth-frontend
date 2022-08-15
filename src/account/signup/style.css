@@ -1,0 +1,338 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body,
+p,
+html,
+body,
+h1 {
+    width: 100%;
+
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+a {
+    text-decoration: none
+}
+
+/*font-family: 'Montserrat', sans-serif;*/
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d0d0d2;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::placeholder {
+    color: #9A9AAF;
+    font-weight: 500;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input:focus:-moz-placeholder {
+    color: transparent;
+}
+
+/* FF 4-18 */
+input:focus::-moz-placeholder {
+    color: transparent;
+}
+
+/* FF 19+ */
+input:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+/* IE 10+ */
+ol,
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.outer_box {
+    float: left;
+    width: 100%;
+    background: #F5F7FA url(../../assets/img/login-bacground.svg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 72%;
+    background-position: 50% 40%;
+}
+
+.logo_head {
+    float: left;
+    width: 100%;
+}
+
+.logo_sec {
+    position: relative;
+    padding: 15px 25px;
+    float: left;
+    width: 100%;
+}
+
+.btn_log {
+    height: 48px;
+    width: 100%;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    background: #2E2E3A;
+    border-radius: 6px;
+    padding: 0;
+    align-items: center;
+    margin: auto;
+    display: flex;
+    border: 0;
+    outline: 0;
+    justify-content: center;
+}
+
+.main-login {
+    width: 600px;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    padding: 40px 75px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 2px solid #EFF1F3;
+    box-shadow: 0px 4px 16px rgb(116 103 240 / 12%);
+}
+
+.txtcenetr {
+    text-align: center;
+}
+
+.mflex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ico_pink {
+    width: 155px;
+    height: 155px;
+    background: rgba(239, 168, 183, 0.2);
+    box-shadow: 0px 11.28px 24.231px rgb(239 168 183 / 12%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 25px auto;
+}
+
+.ico_blue {
+    width: 155px;
+    height: 155px;
+    background: rgba(100, 92, 250, 0.2);
+    box-shadow: 0px 11.28px 24.231px rgba(100, 92, 250, 0.115);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 25px auto;
+}
+
+.dot_step {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+}
+
+.dot_step a {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2E2E3A;
+    border-radius: 50%;
+    margin: auto 5px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.dot_step .dot_fill {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #2E2E3A;
+    border-radius: 50%;
+    margin: auto 5px;
+    background: #2E2E3A;
+}
+
+.ttltxt {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.paratxt {
+    font-size: 16px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+
+
+.reg_sec {}
+
+.reg_sec h1 {
+    font-size: 22px;
+    padding: 15px;
+    width: 100%;
+    display: flex;
+}
+
+.reg_sec .dot_step {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 15px auto;
+}
+
+.reg_sec label {
+    font-size: 14px;
+    margin-bottom: 10px;
+    float: left;
+    width: 100%;
+    color: #2E2E3A;
+}
+
+.w_50 {
+    position: relative;
+}
+
+.w_50lft {
+    width: 48%;
+    float: left;
+}
+
+.w_50rgt {
+    width: 48%;
+    float: right;
+}
+
+.w_100 {
+    width: 100%;
+    float: left;
+    padding: 8px 0px;
+}
+
+.inp_box,
+.w_100 {
+    position: relative;
+}
+
+.inp_box {
+    float: left;
+    width: 100%;
+    border: 1px solid #9D9D9D;
+    border-radius: 5px;
+    margin: auto;
+    padding: 5px 15px;
+    color: #9A9AAF;
+    outline: 0;
+    font-weight: 600;
+    background: #ffffff;
+    font-size: 14px;
+    height: 36px;
+}
+
+.nw_slct {
+    padding: 5px 18px 5px 8px;
+    font-weight: 500;
+}
+
+
+
+@media only screen and (min-width: 150px) and (max-width: 850px) {
+    .outer_box {
+        height: 100%;
+        padding: 10px 15px;
+    }
+
+    .logo_sec {
+        position: relative;
+        padding: 15px 0px;
+        float: left;
+        width: 100%;
+    }
+
+    .main-login {
+        width: 100%;
+        position: relative !important;
+        top: unset;
+        left: unset;
+        float: left;
+        margin: auto;
+        transform: unset;
+        padding: 15px;
+        background: #ffffff;
+        border-radius: 8px;
+        border: 2px solid #EFF1F3;
+        box-shadow: 0px 4px 16px rgb(116 103 240 / 12%);
+    }
+
+    .reg_sec h1 {
+        font-size: 22px;
+        padding: 15px 0;
+        width: 100%;
+        display: flex;
+    }
+
+    .w_100 {
+        width: 100%;
+        float: left;
+        padding: 0;
+    }
+
+    .w_50lft,
+    .w_50rgt {
+        width: 100%;
+        margin-bottom: 10px;
+        float: left;
+    }
+
+    .ttltxt {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .paratxt {
+        font-size: 12px;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+
+
+
+
+}
