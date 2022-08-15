@@ -22,7 +22,7 @@ function App() {
         <Route path='/onboarding5' element={<OnBoarding5 />} />
       </Routes>
     </BrowserRouter>
-  );
+  );    
 }   
 
 export default App;
