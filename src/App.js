@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import SignUp from './account/signup/index';
-import SignIn from './account/signIn/index';
-import Onboarding1 from './account/signup/onboarding1';
-import OnBoarding2 from './account/signup/onboarding2';
-import OnBoarding3 from './account/signup/onboarding3';
-import OnBoarding4 from './account/signup/onboarding4';
-import OnBoarding5 from './account/signup/onboarding5';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoute from './configs/routes';
+import { useSelector } from 'react-redux';
+import { LoadingOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css';
+import './App.css';
 
 function App() {
+  const { isLoading } = useSelector((state) => state.common);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<SignIn />} />
-        <Route path='/register' element={<SignUp />} />
-        <Route path='/onboarding1' element={<Onboarding1 />} />
-        <Route path='/onboarding2' element={<OnBoarding2 />} />
-        <Route path='/onboarding3' element={<OnBoarding3 />} />
-        <Route path='/onboarding4' element={<OnBoarding4 />} />
-        <Route path='/onboarding5' element={<OnBoarding5 />} />
-      </Routes>
-    </BrowserRouter>
+    <div className='App'>
+      <BrowserRouter>
+        <Suspense
+          fallback={
+            <div className='loader'>
+              <LoadingOutlined style={{ fontSize: '50px' }} />
+            </div>
+          }
+        >
+          {isLoading && (
+            <div className='loader'>
+              <LoadingOutlined style={{ fontSize: '50px' }} />
+            </div>
+          )}
+          <AppRoute />
+        </Suspense>
+      </BrowserRouter>
+    </div>
   );    
 }   
 
