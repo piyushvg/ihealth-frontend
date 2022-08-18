@@ -24,10 +24,12 @@ const OnBoarding2 = () => {
               <img src={LifeSaverFamilyLogo} />
             </div>
             <div className="dot_step">
+            <a className=""></a>
               <a className="dot_fill"></a>
               <a className=""></a>
               <a className=""></a>
               <a className=""></a>
+              
               <NavLink className="" to={"/register"}></NavLink>
             </div>
             <div className="ttltxt">Our care concierge on standby</div>

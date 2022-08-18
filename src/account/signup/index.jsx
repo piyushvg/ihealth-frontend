@@ -20,6 +20,7 @@ const SignUp = () => {
               <NavLink className="" to={"/onboarding2"}></NavLink>
               <NavLink className="" to={"/onboarding3"}></NavLink>
               <NavLink className="" to={"/onboarding4"}></NavLink>
+              <NavLink className="" to={"/onboarding5"}></NavLink>
               <a className="dot_fill"></a>
             </div>
             <h1>Create an account</h1>

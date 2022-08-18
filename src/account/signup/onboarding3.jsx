@@ -25,6 +25,7 @@ const OnBoarding3 = () => {
             </div>
             <div className="dot_step">
               <a className=""></a>
+              <a className=""></a>
               <a className="dot_fill"></a>
               <a className=""></a>
               <a className=""></a>
