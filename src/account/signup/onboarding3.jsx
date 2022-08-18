@@ -10,13 +10,13 @@ const OnBoarding3 = () => {
       <div className="outer_box">
         <div className="logo_head">
           <div className="logo_sec">
-            <img src={iHealthLogo} />
+            <img src={iHealthLogo} style={{width:'25%',marginLeft:'15px'}}/>
           </div>
         </div>
 
         <div className="main-login step_cont">
           <div className="logo_sec txtcenetr">
-            <img src={iHealthLogo} />
+            <img src={iHealthLogo} style={{width:'25%',marginLeft:'15px'}}/>
           </div>
 
           <div className="mflex step_3">

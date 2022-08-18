@@ -7,6 +7,7 @@ import OnBoarding2 from '../account/signup/onboarding2';
 import OnBoarding3 from '../account/signup/onboarding3';
 import OnBoarding4 from '../account/signup/onboarding4';
 import OnBoarding5 from '../account/signup/onboarding5';
+import Dashboard from '../pages/dashboard';
 
 const AppRoute = () => {
   let routes = useRoutes([
@@ -17,6 +18,7 @@ const AppRoute = () => {
     { path: '/onboarding3', element: <OnBoarding3 /> },
     { path: '/onboarding4', element: <OnBoarding4 /> },
     { path: '/onboarding5', element: <OnBoarding5 /> },
+    { path: '/dashboard', element: <Dashboard /> },
     { path: '*', element: <Navigate to='/' replace /> },
   ]);
   return routes;

@@ -8,7 +8,7 @@ const SignUp = () => {
     <>
       <div className="outer_box">
         <div className="logo_head">
-          <div className="logo_sec">
+          <div className="logo_sec" style={{width:'25%',marginLeft:'15px'}}>
             <img src={iHealthLogo} />
           </div>
         </div>
