@@ -112,6 +112,7 @@
       margin: auto;
       border: 0;
       outline: 0;
+      cursor: pointer;
   }
   .btn_reg{height: 40px;
       width: 100%;
@@ -125,6 +126,7 @@
       margin: auto;
       border: 1px solid #645CFA;
       outline: 0;
+      cursor: pointer;
   }
   .border { width:100%; text-align:center; border-bottom: 1px solid #000; line-height:0.1em; margin:20px 0 20px;font-size: 12px;float: left;} 
   .border span { background:#fff; padding:0 10px; }
