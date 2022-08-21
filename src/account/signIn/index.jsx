@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.css";
 import iHealthLogo from "../../assets/img/iHealthOX-Logo.svg";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
@@ -152,7 +152,7 @@ const SignIn = () => {
 
                 <div className="w_100 flex">
                   <a href="#">Forgot password? Reset</a>
-                  <a href="onboarding1">Not a member?</a>
+                  <NavLink to="/register">Not a member?</NavLink>
                 </div>
                 <div className="w_100 center">
                   <input
