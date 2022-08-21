@@ -1,12 +1,11 @@
 import React from "react";
 import style from "./style.css";
 import iHealthLogo from "../../assets/img/iHealthOX-Logo.svg";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-import UserPool from '../../service/UserPool';
-
+import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+import UserPool from "../../service/UserPool";
 
 const initialValues = () => {
   let params = {
@@ -27,19 +26,42 @@ const LoginSchema = Yup.object().shape({
 
 const SignIn = () => {
   const navigate = useNavigate();
+
+  const handleSubmit = async (values, e) => {
+    e.preventDefault();
+    const user = new CognitoUser({
+      Username: values.email,
+      Pool: UserPool,
+    });
+    const authDetails = new AuthenticationDetails({
+      Username: values.email,
+      Password: values.password,
+    });
+
+    user.authenticateUser(authDetails, {
+      onSuccess: (data) => {
+        console.log(data);
+        navigate("/dashboard");
+      },
+      onFailure: (err) => {
+        console.error(err);
+        alert(err.message);
+      },
+      newPasswordRequired: (data) => {
+        console.log("New Password required!", data);
+      },
+    });
+  };
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={async (values) => {
-          // await LoginSchema.validate(values)
-          console.log("valuess", values);
-          alert("Form is validated! Submitting the form...");
-        }}
+        onSubmit={async (values) => await handleSubmit(values)}
         validationSchema={LoginSchema}
       >
         {(formikBag) => {
-          const {touched, errors, isSubmitting} = formikBag
+          const { touched, errors, isSubmitting } = formikBag;
+          // console.log('errorsformik',errors)
           return (
             <div className="outer_box">
               <div className="logo_head">
@@ -57,11 +79,17 @@ const SignIn = () => {
                   <Field
                     type="email"
                     name="email"
-                    className={`inp_box alert_err ${touched.email && errors.email ? "is-invalid" : ""}`}
+                    className={`inp_box alert_err ${
+                      touched.email && errors.email ? "is-invalid" : ""
+                    }`}
                     placeholder="Email address "
                     autocomplete="off"
                   />
-                  <ErrorMessage name="email" component="div" style={{color:'red',fontSize:12}}/>
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    style={{ color: "red", fontSize: 12 }}
+                  />
                 </div>
 
                 <div className="w_100">
@@ -107,14 +135,16 @@ const SignIn = () => {
                   <Field
                     type="password"
                     className={`inp_box ${
-                      touched.password && errors.password
-                        ? "is-invalid"
-                        : ""
+                      touched.password && errors.password ? "is-invalid" : ""
                     }`}
                     name="password"
                     placeholder="••••••••"
                   />
-                  <ErrorMessage name="password" component="div" style={{color:'red',fontSize:12}}/>
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    style={{ color: "red", fontSize: 12 }}
+                  />
                 </div>
 
                 <div className="w_100 flex">

@@ -7,7 +7,6 @@ import OnBoarding3 from './onboarding3';
 import OnBoarding4 from './onboarding4';
 import OnBoarding5 from './onboarding5';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
-
 import UserPool from '../../service/UserPool';
 
 const SignUp = () => {
