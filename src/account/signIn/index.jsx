@@ -56,7 +56,7 @@ const SignIn = () => {
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={async (values) => await handleSubmit(values)}
+        onSubmit={(values) =>  handleSubmit(values)}
         validationSchema={LoginSchema}
       >
         {(formikBag) => {
