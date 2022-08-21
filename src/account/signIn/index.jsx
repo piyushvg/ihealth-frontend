@@ -4,6 +4,8 @@ import iHealthLogo from "../../assets/img/iHealthOX-Logo.svg";
 import {useNavigate} from 'react-router-dom';
 import { Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import UserPool from '../../service/UserPool';
 
 
 const initialValues = () => {
