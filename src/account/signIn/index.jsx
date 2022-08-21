@@ -20,37 +20,41 @@ const LoginSchema = Yup.object().shape({
     .email("Invalid email address format")
     .required("Email is required"),
   password: Yup.string()
-    .min(6, "Password must be 6 characters at minimum")
+    .min(8, "Password must be 8 characters at minimum")
     .required("Password is required"),
 });
 
 const SignIn = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = async (values, e) => {
-    e.preventDefault();
-    const user = new CognitoUser({
-      Username: values.email,
-      Pool: UserPool,
-    });
-    const authDetails = new AuthenticationDetails({
-      Username: values.email,
-      Password: values.password,
-    });
-
-    user.authenticateUser(authDetails, {
-      onSuccess: (data) => {
-        console.log(data);
-        navigate("/dashboard");
-      },
-      onFailure: (err) => {
-        console.error(err);
-        alert(err.message);
-      },
-      newPasswordRequired: (data) => {
-        console.log("New Password required!", data);
-      },
-    });
+  const handleSubmit = async (values) => {
+    try{
+      const user = new CognitoUser({
+        Username: values.email,
+        Pool: UserPool,
+      });
+      const authDetails = new AuthenticationDetails({
+        Username: values.email,
+        Password: values.password,
+      });
+  
+      user.authenticateUser(authDetails, {
+        onSuccess: (data) => {
+          console.log(data);
+          navigate("/dashboard");
+        },
+        onFailure: (err) => {
+          console.error(err);
+          alert(err.message);
+        },
+        newPasswordRequired: (data) => {
+          console.log("New Password required!", data);
+        },
+      });
+    }catch(err){
+      console.log('login err',err)
+    } 
+  
   };
   return (
     <>
