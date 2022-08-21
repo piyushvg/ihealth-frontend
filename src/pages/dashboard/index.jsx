@@ -11,8 +11,12 @@ import msgIcon from '../../assets/img/msg-blk.svg';
 import user2Icon from '../../assets/img/user2.png';
 import user3Icon from '../../assets/img/user3.png'
 import bellGreyIcon from '../../assets/img/bell_grey.svg'
+import { useLocation } from "react-router-dom";
 
-const dashboard = () => {
+const Dashboard = () => {
+  const location = useLocation();
+  console.log('userName',location)
+  const userName = location?.state?.userName;
   return (
     <>
       <div className="outer_box">
@@ -426,4 +430,4 @@ const dashboard = () => {
     </>
   );
 };
-export default dashboard;
+export default Dashboard;

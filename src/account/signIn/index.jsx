@@ -28,7 +28,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
-    try{
+    try {
       const user = new CognitoUser({
         Username: values.email,
         Pool: UserPool,
@@ -37,11 +37,11 @@ const SignIn = () => {
         Username: values.email,
         Password: values.password,
       });
-  
+
       user.authenticateUser(authDetails, {
         onSuccess: (data) => {
           console.log(data);
-          navigate("/dashboard");
+          navigate("/dashboard", { state: { userName: values.email } });
         },
         onFailure: (err) => {
           console.error(err);
@@ -51,16 +51,15 @@ const SignIn = () => {
           console.log("New Password required!", data);
         },
       });
-    }catch(err){
-      console.log('login err',err)
-    } 
-  
+    } catch (err) {
+      console.log("login err", err);
+    }
   };
   return (
     <>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) =>  handleSubmit(values)}
+        onSubmit={(values) => handleSubmit(values)}
         validationSchema={LoginSchema}
       >
         {(formikBag) => {
