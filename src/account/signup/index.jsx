@@ -54,7 +54,7 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const SignUp = () => {
-  const [steps, setSteps] = useState(6);
+  const [steps, setSteps] = useState(1);
   const [isShowMsg,setShowMsg] = useState(false);
 
   const handleSubmit = (values) => {
