@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import AppRoute from './configs/routes';
 import { useSelector } from 'react-redux';
 import { LoadingOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import './App.css';
 
 function App() {

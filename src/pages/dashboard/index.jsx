@@ -1,5 +1,5 @@
-import React from "react";
-import style from './style.css'
+import React, { useContext } from 'react';
+import './style.css';
 import iHealthLogo from '../../assets/img/iHealthOX-Logo.svg';
 import bellIcon from '../../assets/img/bell-icon.svg';
 import chatIcon from '../../assets/img/chat-icon.svg';
@@ -9,29 +9,32 @@ import img3Icon from '../../assets/img/img3.png';
 import userIcon from '../../assets/img/user1.png';
 import msgIcon from '../../assets/img/msg-blk.svg';
 import user2Icon from '../../assets/img/user2.png';
-import user3Icon from '../../assets/img/user3.png'
-import bellGreyIcon from '../../assets/img/bell_grey.svg'
-import { useLocation } from "react-router-dom";
+import user3Icon from '../../assets/img/user3.png';
+import bellGreyIcon from '../../assets/img/bell_grey.svg';
+
+import { AccountContext } from '../../service/Account';
 
 const Dashboard = () => {
-  const location = useLocation();
-  console.log('userName',location)
-  const userName = location?.state?.userName;
+  const { signOut } = useContext(AccountContext);
+
   return (
     <>
       <div className="outer_box">
         <div className="top_header">
-          <div className="menu_icon" >
+          <div className="menu_icon">
             <div className="menu_bar1"></div>
             <div className="menu_bar2"></div>
             <div className="menu_bar3"></div>
           </div>
           <div className="logo_head">
-          <div className="logo_sec" style={{width:'25%',marginLeft:'15px'}}>
-            <img src={iHealthLogo}/>
+            <div
+              className="logo_sec"
+              style={{ width: '25%', marginLeft: '15px' }}
+            >
+              <img src={iHealthLogo} />
+            </div>
           </div>
-          </div>
-        
+
           <div className="info_sec">
             <div className="sec_15">
               <img src={bellIcon} />
@@ -48,40 +51,40 @@ const Dashboard = () => {
           <div className="mob_opcity"></div>
           <div className="left_sec">
             <div className="tp60 w_box">
-              <input type="text" className="search-box" placeholder="Search"/>
+              <input type="text" className="search-box" placeholder="Search" />
               <span className="search-icon" />
             </div>
             <div className="left_menu">
               <ul id="side-menu">
                 <li className="menu_tap menu_tap_act">
-                  {" "}
+                  {' '}
                   <i className="home home_blu"></i>
                   <span className="menu_txt">Home</span>
                 </li>
                 <li className="menu_tap">
-                  {" "}
+                  {' '}
                   <i className="myhealth"></i>
                   <span className="menu_txt">Myhealth</span>
                 </li>
                 <li className="menu_tap">
-                  {" "}
+                  {' '}
                   <i className="resources"></i>
                   <span className="menu_txt">IHealthOX Resources </span>
                 </li>
                 <li className="menu_tap">
-                  {" "}
+                  {' '}
                   <i className="account"></i>
                   <span className="menu_txt">Profile </span>
                 </li>
                 <li className="menu_tap">
-                  {" "}
+                  {' '}
                   <i className="contact"></i>
                   <span className="menu_txt">Community </span>
                 </li>
-                <li className="menu_tap absbtm">
-                  {" "}
+                <li className="menu_tap absbtm" onClick={signOut}>
+                  {' '}
                   <i className="logout"></i>
-                  <span className="menu_txt">logout </span>
+                  <span className="menu_txt">Logout </span>
                 </li>
               </ul>
             </div>
@@ -145,7 +148,7 @@ const Dashboard = () => {
                     <path
                       fill="currentColor"
                       d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
-                    //   style="fill: #9D9D9D;"
+                      //   style="fill: #9D9D9D;"
                     ></path>
                   </svg>
                 </span>
@@ -162,7 +165,7 @@ const Dashboard = () => {
                 <div className="plan_box">
                   <div className="box">
                     <div>
-                      <img src={img1Icon}/>
+                      <img src={img1Icon} />
                     </div>
                     <div className="pd15">
                       <h4>Plan name</h4>
@@ -217,7 +220,7 @@ const Dashboard = () => {
                     <path
                       fill="currentColor"
                       d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
-                    //   style="fill: #9D9D9D;"
+                      //   style="fill: #9D9D9D;"
                     ></path>
                   </svg>
                 </span>
@@ -285,11 +288,11 @@ const Dashboard = () => {
           <div className="right_sec">
             <div className="wnotibell">
               <div className="tab actvtab">
-                {" "}
-                <img src={bellGreyIcon}/> <span>Notifications</span>
+                {' '}
+                <img src={bellGreyIcon} /> <span>Notifications</span>
               </div>
               <div className="tab">
-                {" "}
+                {' '}
                 <img src={chatIcon} /> <span>Inbox</span>
               </div>
             </div>
@@ -300,7 +303,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -310,7 +313,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -320,7 +323,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -330,7 +333,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -343,7 +346,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -353,7 +356,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -363,7 +366,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -373,7 +376,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -386,7 +389,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -396,7 +399,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -406,7 +409,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
@@ -416,7 +419,7 @@ const Dashboard = () => {
                   <div className="utyp">AP</div>
                   <div className="smsdtl">
                     <div className="noti_text">
-                      Lorem Ipsum notification version one:{" "}
+                      Lorem Ipsum notification version one:{' '}
                     </div>
                     <div className="time">23m ago</div>
                   </div>
