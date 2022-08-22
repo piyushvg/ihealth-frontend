@@ -1,10 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './style.css';
 import iHealthLogo from '../../../assets/img/iHealthOX-Logo.svg';
-import { NavLink, useNavigate } from 'react-router-dom';
 import { Field, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AccountContext } from '../../../service/Account';
+import {
+  isLoadingHandler,
+  userHandler,
+} from '../../../redux/reducer/commonSlice';
+import { message } from 'antd';
 
 const initialValues = () => {
   let params = {
@@ -25,12 +31,28 @@ const LoginSchema = Yup.object().shape({
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { authenticate } = useContext(AccountContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = async (values) => {
     try {
-      await authenticate(values.email, values.password);
+      if (isLoading) return;
+      if (!values.email || !values.password) return;
+      setIsLoading(true);
+      dispatch(isLoadingHandler(true));
+      const data = await authenticate(values.email, values.password);
+      if (data) {
+        userHandler(data.idToken.payload);
+        message.success('Login successful!');
+        setIsLoading(false);
+        dispatch(isLoadingHandler(false));
+      }
     } catch (err) {
-      console.log('Failed to login', err);
+      message.error(err.message);
+      setIsLoading(false);
+      dispatch(isLoadingHandler(false));
     }
   };
   return (
@@ -41,8 +63,7 @@ const SignIn = () => {
         validationSchema={LoginSchema}
       >
         {(formikBag) => {
-          const { touched, errors, isSubmitting } = formikBag;
-          // console.log('errorsformik',errors)
+          const { touched, errors, isValid, dirty } = formikBag;
           return (
             <div className="outer_box">
               <div className="logo_head">
@@ -60,11 +81,14 @@ const SignIn = () => {
                   <Field
                     type="email"
                     name="email"
-                    className={`inp_box alert_err ${
-                      touched.email && errors.email ? 'is-invalid' : ''
+                    className={`inp_box  ${
+                      touched.email && errors.email
+                        ? 'alert_err is-invalid'
+                        : ''
                     }`}
                     placeholder="Email address "
                     autocomplete="off"
+                    autoFocus
                   />
                   <ErrorMessage
                     name="email"
@@ -79,7 +103,8 @@ const SignIn = () => {
                     type="checkbox"
                     id="show-password"
                     className="show-password"
-                    checked
+                    checked={!showPassword}
+                    onClick={() => setShowPassword(!showPassword)}
                   />
                   <label
                     for="show-password"
@@ -114,7 +139,7 @@ const SignIn = () => {
                     </svg>
                   </label>
                   <Field
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     className={`inp_box ${
                       touched.password && errors.password ? 'is-invalid' : ''
                     }`}
@@ -137,6 +162,7 @@ const SignIn = () => {
                     type="submit"
                     value=" Sign in"
                     className="btn_log"
+                    disabled={!isValid || !dirty}
                     onClick={formikBag.handleSubmit}
                   />
                 </div>

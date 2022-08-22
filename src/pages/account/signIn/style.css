@@ -114,7 +114,14 @@
       outline: 0;
       cursor: pointer;
   }
-  .btn_reg{height: 40px;
+  .btn_log:disabled,
+  button[disabled] {
+    cursor: default;
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+  .btn_reg {height: 40px;
       width: 100%;
       font-size: 16px;
       color: #645CFA;
@@ -145,7 +152,7 @@
       width: auto !important;
       margin: auto !important;
       padding: 0 !important;
-      bottom: 14px !important;
+      bottom: 10px !important;
       right: 10px !important;
       z-index: 99 !important;
   }

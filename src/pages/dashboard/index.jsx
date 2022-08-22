@@ -1,4 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import './style.css';
 import iHealthLogo from '../../assets/img/iHealthOX-Logo.svg';
 import bellIcon from '../../assets/img/bell-icon.svg';
@@ -16,6 +18,8 @@ import { AccountContext } from '../../service/Account';
 
 const Dashboard = () => {
   const { signOut } = useContext(AccountContext);
+
+  const { user } = useSelector((state) => state.common);
 
   return (
     <>
@@ -43,7 +47,12 @@ const Dashboard = () => {
               <img src={chatIcon} />
             </div>
             <div className="dropdown sec_15">
-              <button className="dropbtn down-arrow">RO</button>
+              <button className="dropbtn down-arrow">
+                {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
+                {user && user.family_name
+                  ? user.family_name.charAt(0).toUpperCase()
+                  : ''}
+              </button>
             </div>
           </div>
         </div>

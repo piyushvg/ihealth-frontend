@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './style.css';
 import iHealthLogo from '../../../assets/img/iHealthOX-Logo.svg';
 import Onboarding1 from './onboarding1';
@@ -10,7 +12,8 @@ import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import Pool from '../../../service/Pool';
 import { Field, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useLocation } from 'react-router-dom';
+import { isLoadingHandler } from '../../../redux/reducer/commonSlice';
+import { message } from 'antd';
 
 const initialValues = () => {
   let params = {
@@ -29,9 +32,9 @@ const RegisterSchema = Yup.object().shape({
   last_name: Yup.string().required('Last Name is Required'),
   phone_number: Yup.string()
     .matches(/^[0-9]+$/, 'Must be only digits')
-    .max(12, 'A phone number must be 12 digits starting with country code')
-    .min(12, 'A phone number must be 12 digits starting with country code')
-    .required('A phone number is required'),
+    .max(12, 'Phone number must be 12 digits starting with country code')
+    .min(12, 'Phone number must be 12 digits starting with country code')
+    .required('Phone number is required'),
   email: Yup.string()
     .email('Invalid email address format')
     .required('Email is required'),
@@ -45,7 +48,7 @@ const RegisterSchema = Yup.object().shape({
   confirm_password: Yup.string().when('password', (password, field) =>
     password
       ? field
-          .required()
+          .required('Confirm Password is required')
           .oneOf(
             [Yup.ref('password'), null],
             'Your password does not match with confirm password!'
@@ -55,9 +58,11 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const SignUp = (props) => {
+  const navigate = useNavigate();
   let location = useLocation();
+  const dispatch = useDispatch();
   const [steps, setSteps] = useState(1);
-  const [isShowMsg, setShowMsg] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (location.state && typeof location.state.steps === 'number') {
@@ -67,6 +72,8 @@ const SignUp = (props) => {
 
   const handleSubmit = (values) => {
     try {
+      if (isLoading) return;
+
       const attributeName = new CognitoUserAttribute({
         Name: 'name',
         Value: values.first_name,
@@ -81,6 +88,9 @@ const SignUp = (props) => {
       });
       const email = values.email;
       const password = values.password;
+      if (!email || !password) return;
+      setIsLoading(true);
+      dispatch(isLoadingHandler(true));
       Pool.signUp(
         email,
         password,
@@ -89,14 +99,22 @@ const SignUp = (props) => {
         (err, data) => {
           if (err) {
             console.error(err);
+            message.error(err.message);
+            setIsLoading(false);
+            dispatch(isLoadingHandler(false));
           } else {
-            console.log(data);
-            setShowMsg(true);
+            message.success('Signup successful!');
+            setIsLoading(false);
+            dispatch(isLoadingHandler(false));
+            navigate('/signin');
           }
         }
       );
     } catch (err) {
       console.log('err', err);
+      message.error(err.message);
+      setIsLoading(false);
+      dispatch(isLoadingHandler(false));
     }
   };
 
@@ -118,8 +136,7 @@ const SignUp = (props) => {
         validationSchema={RegisterSchema}
       >
         {(formikBag) => {
-          const { touched, errors, isSubmitting, values } = formikBag;
-          console.log('values', errors, values);
+          const { touched, errors, isValid, dirty } = formikBag;
           return (
             <div className="outer_box">
               <div className="logo_head">
@@ -133,15 +150,6 @@ const SignUp = (props) => {
 
               <div className="main-login reg_sec">
                 <div className="mflex step_6">
-                  {/* <div className="dot_step">
-                    <a className=""></a>
-                    <a className=""></a>
-                    <a className=""></a>
-                    <a className=""></a>
-                    <a className=""></a>
-                    <a className=""></a>
-                    <a className="dot_fill"></a>
-                  </div> */}
                   <h1>Create an account</h1>
                   <div className="w_100">
                     <div className="w_50lft">
@@ -149,10 +157,13 @@ const SignUp = (props) => {
                       <Field
                         type="text"
                         name="first_name"
-                        className="inp_box"
+                        className={`inp_box  ${
+                          touched.first_name && errors.first_name
+                            ? 'alert_err is-invalid'
+                            : ''
+                        }`}
                         placeholder="First name"
                         autoComplete="off"
-                        // required
                       />
                       <ErrorMessage
                         name="first_name"
@@ -165,10 +176,13 @@ const SignUp = (props) => {
                       <Field
                         type="text"
                         name="last_name"
-                        className="inp_box"
+                        className={`inp_box  ${
+                          touched.last_name && errors.last_name
+                            ? 'alert_err is-invalid'
+                            : ''
+                        }`}
                         placeholder="Last name"
                         autoComplete="off"
-                        // required
                       />
                       <ErrorMessage
                         name="last_name"
@@ -183,10 +197,13 @@ const SignUp = (props) => {
                       <Field
                         type="text"
                         name="email"
-                        className="inp_box"
+                        className={`inp_box  ${
+                          touched.email && errors.email
+                            ? 'alert_err is-invalid'
+                            : ''
+                        }`}
                         placeholder="Email "
                         autoComplete="off"
-                        // required
                       />
                       <ErrorMessage
                         name="email"
@@ -199,10 +216,13 @@ const SignUp = (props) => {
                       <Field
                         type="text"
                         name="phone_number"
-                        className="inp_box"
+                        className={`inp_box  ${
+                          touched.phone_number && errors.phone_number
+                            ? 'alert_err is-invalid'
+                            : ''
+                        }`}
                         placeholder="Phone "
                         autoComplete="off"
-                        // required
                       />
                       <ErrorMessage
                         name="phone_number"
@@ -216,12 +236,15 @@ const SignUp = (props) => {
                     <div className="w_50lft">
                       <label>Password *</label>
                       <Field
-                        type="Password"
+                        type="password"
                         name="password"
-                        className="inp_box "
-                        placeholder="••••••••"
+                        placeholder="Password"
+                        className={`inp_box  ${
+                          touched.password && errors.password
+                            ? 'alert_err is-invalid'
+                            : ''
+                        }`}
                         autoComplete="off"
-                        // required
                       />
                       <ErrorMessage
                         name="password"
@@ -232,11 +255,15 @@ const SignUp = (props) => {
                     <div className="w_50rgt">
                       <label>Confirm password *</label>
                       <Field
+                        type="password"
                         name="confirm_password"
-                        className="inp_box "
-                        placeholder="••••••••"
+                        placeholder="Confirm Password"
+                        className={`inp_box  ${
+                          touched.confirm_password && errors.confirm_password
+                            ? 'alert_err is-invalid'
+                            : ''
+                        }`}
                         autoComplete="off"
-                        // required
                       />
                       <ErrorMessage
                         name="confirm_password"
@@ -251,15 +278,20 @@ const SignUp = (props) => {
                       type="submit"
                       value="Get started"
                       className="btn_log"
+                      disabled={!isValid || !dirty}
                       onClick={formikBag.handleSubmit}
                     />
                   </div>
-                  <div>
-                    {isShowMsg ? (
-                      <p style={{ fontSize: 20, margin: 12 }}>
-                        Registration Succesful !
-                      </p>
-                    ) : null}
+                  <div className="border">
+                    <span>or</span>
+                  </div>
+                  <div className="w_100 center">
+                    <input
+                      type="button"
+                      value="Sign In"
+                      className="btn_reg"
+                      onClick={() => navigate('/signin')}
+                    />
                   </div>
                 </div>
               </div>
