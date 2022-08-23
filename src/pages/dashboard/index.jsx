@@ -15,11 +15,19 @@ import user3Icon from '../../assets/img/user3.png';
 import bellGreyIcon from '../../assets/img/bell_grey.svg';
 
 import { AccountContext } from '../../service/Account';
+import { useTranslation } from 'react-i18next';
+import { Select } from 'antd';
+const { Option } = Select;
 
 const Dashboard = () => {
   const { signOut } = useContext(AccountContext);
-
   const { user } = useSelector((state) => state.common);
+  const { t, i18n, } = useTranslation();
+
+  const handleChange = (lang) => {
+    console.log(`selected ${lang}`);
+    i18n.changeLanguage(lang);
+  };
 
   return (
     <>
@@ -40,6 +48,8 @@ const Dashboard = () => {
           </div>
 
           <div className="info_sec">
+            <p>{t('hello_welcome')}</p>
+            <p>{t('this_is_an_example')}</p>
             <div className="sec_15">
               <img src={bellIcon} />
             </div>
@@ -54,6 +64,14 @@ const Dashboard = () => {
                   : ''}
               </button>
             </div>
+            <Select
+              defaultValue={i18n.language}
+              style={{ width: 120 }}
+              onChange={handleChange}
+            >
+              <Option value="en">English</Option>
+              <Option value="fr">French</Option>={' '}
+            </Select>
           </div>
         </div>
         <div className="inner_sec">
