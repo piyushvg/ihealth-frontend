@@ -827,6 +827,14 @@ img {
         display: flex;
         align-items: center;
         width: auto;
+      
+    }
+    .sec_15_mob{
+        margin: auto 10px;
+        display: flex;
+        align-items: center;
+        height: 24;
+        width: 24;
     }
 
     .dropdown {
