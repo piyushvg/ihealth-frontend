@@ -55,39 +55,26 @@ const Dashboard = () => {
             <div className="menu_bar3"></div>
           </div>
           <div className="logo_head">
-            <div className="logo_sec">
-              <img src={iHealthLogo} />
+            <div >
+              <img src={iHealthLogo} className={screen.xs ? "logo_sec_custom" : "logo_sec"}/>
             </div>
           </div>
 
           <div className="info_sec">
-            {screen.xs  ? (
               <>
-                <div className="sec_15_mob">
+                <div className={screen.xs ? "custom-ic" :"sec_15"}>
                   <img
                     src={bellIcon}
                     onClick={() => handleClickNotification()}
-                    style={{ width: 24, height: 24 }}
+                    className={screen.xs ? "custom-ic-img" :""}
                   />
                 </div>
-                <div className="sec_15_mob">
-                  <img src={chatIcon} style={{ width: 24, height: 24 }} />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="sec_15">
-                  <img
-                    src={bellIcon}
-                    onClick={() => handleClickNotification()}
+                <div  className={screen.xs ? "custom-ic" :"sec_15"}>
+                  <img src={chatIcon} 
+                  className={screen.xs ? "custom-ic-img" :""}
                   />
                 </div>
-                <div className="sec_15">
-                  <img src={chatIcon} />
-                </div>
               </>
-            )}
-
             <div className="dropdown sec_15">
               <button className="dropbtn down-arrow">
                 {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
