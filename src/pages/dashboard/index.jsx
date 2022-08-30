@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import './style.css';
@@ -12,7 +12,10 @@ import userIcon from '../../assets/img/user1.png';
 import msgIcon from '../../assets/img/msg-blk.svg';
 import user2Icon from '../../assets/img/user2.png';
 import user3Icon from '../../assets/img/user3.png';
-import bellGreyIcon from '../../assets/img/bell_grey.svg';
+
+import { Grid, Tag } from 'antd';
+import LeftSidebar from './components/Leftsidebar';
+import RightSidebar from './components/RightSidebar';
 
 import { AccountContext } from '../../service/Account';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +23,10 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const Dashboard = () => {
+  const [isShowLeftSidebar, setIsShowLeftSideBar] = useState(false);
+  const [isShowNotification, setIsShowNotification] = useState(false);
+  const { useBreakpoint } = Grid;
+  const screen = useBreakpoint();
   const { signOut } = useContext(AccountContext);
   const { user } = useSelector((state) => state.common);
   const { t, i18n, } = useTranslation();
@@ -29,20 +36,35 @@ const Dashboard = () => {
     i18n.changeLanguage(lang);
   };
 
+  const handleToggle = () => {
+    if (screen.xs) {
+      setIsShowLeftSideBar(!isShowLeftSidebar);
+    }
+  };
+
+  const handleClickNotification = () => {
+    if (screen.xs) {
+      setIsShowNotification(!isShowNotification);
+    }
+  };
+  console.log('screen', screen);
+
   return (
-    <>
+    <div>
       <div className="outer_box">
         <div className="top_header">
-          <div className="menu_icon">
+          <div
+            className={isShowLeftSidebar ? 'change' : 'menu_icon'}
+            onClick={() => {
+              handleToggle();
+            }}
+          >
             <div className="menu_bar1"></div>
             <div className="menu_bar2"></div>
             <div className="menu_bar3"></div>
           </div>
           <div className="logo_head">
-            <div
-              className="logo_sec"
-              style={{ width: '25%', marginLeft: '15px' }}
-            >
+            <div className="logo_sec">
               <img src={iHealthLogo} />
             </div>
           </div>
@@ -50,12 +72,32 @@ const Dashboard = () => {
           <div className="info_sec">
             <p>{t('hello_welcome')}</p>
             <p>{t('this_is_an_example')}</p>
-            <div className="sec_15">
-              <img src={bellIcon} />
-            </div>
-            <div className="sec_15">
-              <img src={chatIcon} />
-            </div>
+            {screen.xs  ? (
+              <>
+                <div className="sec_15_mob">
+                  <img
+                    src={bellIcon}
+                    onClick={() => handleClickNotification()}
+                    style={{ width: 24, height: 24 }}
+                  />
+                </div>
+                <div className="sec_15_mob">
+                  <img src={chatIcon} style={{ width: 24, height: 24 }} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="sec_15">
+                  <img
+                    src={bellIcon}
+                    onClick={() => handleClickNotification()}
+                  />
+                </div>
+                <div className="sec_15">
+                  <img src={chatIcon} />
+                </div>
+              </>
+            )}
             <div className="dropdown sec_15">
               <button className="dropbtn down-arrow">
                 {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
@@ -75,47 +117,19 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="inner_sec">
-          <div className="mob_opcity"></div>
-          <div className="left_sec">
-            <div className="tp60 w_box">
-              <input type="text" className="search-box" placeholder="Search" />
-              <span className="search-icon" />
-            </div>
-            <div className="left_menu">
-              <ul id="side-menu">
-                <li className="menu_tap menu_tap_act">
-                  {' '}
-                  <i className="home home_blu"></i>
-                  <span className="menu_txt">Home</span>
-                </li>
-                <li className="menu_tap">
-                  {' '}
-                  <i className="myhealth"></i>
-                  <span className="menu_txt">Myhealth</span>
-                </li>
-                <li className="menu_tap">
-                  {' '}
-                  <i className="resources"></i>
-                  <span className="menu_txt">IHealthOX Resources </span>
-                </li>
-                <li className="menu_tap">
-                  {' '}
-                  <i className="account"></i>
-                  <span className="menu_txt">Profile </span>
-                </li>
-                <li className="menu_tap">
-                  {' '}
-                  <i className="contact"></i>
-                  <span className="menu_txt">Community </span>
-                </li>
-                <li className="menu_tap absbtm" onClick={signOut}>
-                  {' '}
-                  <i className="logout"></i>
-                  <span className="menu_txt">Logout </span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <div
+            className="mob_opcity"
+            style={
+              isShowLeftSidebar || isShowNotification
+                ? { display: 'block' }
+                : { display: 'none' }
+            }
+          ></div>
+          {isShowLeftSidebar ? (
+            <LeftSidebar display={isShowLeftSidebar} signOut={signOut} />
+          ) : (
+            <LeftSidebar signOut={signOut} />
+          )}
           <div className="middel_sec">
             <div className="noti_box">
               <h4>Care plan name </h4>
@@ -312,152 +326,14 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="right_sec">
-            <div className="wnotibell">
-              <div className="tab actvtab">
-                {' '}
-                <img src={bellGreyIcon} /> <span>Notifications</span>
-              </div>
-              <div className="tab">
-                {' '}
-                <img src={chatIcon} /> <span>Inbox</span>
-              </div>
-            </div>
-            <div className="notification">
-              <div className="inner_box">
-                <h4>Today</h4>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-              </div>
-              <div className="inner_box">
-                <h4>Yesterday</h4>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-              </div>
-              <div className="inner_box">
-                <h4>This week</h4>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-                <div className="noti_card">
-                  <div className="utyp">AP</div>
-                  <div className="smsdtl">
-                    <div className="noti_text">
-                      Lorem Ipsum notification version one:{' '}
-                    </div>
-                    <div className="time">23m ago</div>
-                  </div>
-                  <div className="status"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {isShowNotification ? (
+            <RightSidebar display={isShowNotification} />
+          ) : (
+            <RightSidebar />
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default Dashboard;
