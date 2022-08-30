@@ -18,6 +18,9 @@ import LeftSidebar from './components/Leftsidebar';
 import RightSidebar from './components/RightSidebar';
 
 import { AccountContext } from '../../service/Account';
+import { useTranslation } from 'react-i18next';
+import { Select } from 'antd';
+const { Option } = Select;
 
 const Dashboard = () => {
   const [isShowLeftSidebar, setIsShowLeftSideBar] = useState(false);
@@ -26,6 +29,12 @@ const Dashboard = () => {
   const screen = useBreakpoint();
   const { signOut } = useContext(AccountContext);
   const { user } = useSelector((state) => state.common);
+  const { t, i18n, } = useTranslation();
+
+  const handleChange = (lang) => {
+    console.log(`selected ${lang}`);
+    i18n.changeLanguage(lang);
+  };
 
   const handleToggle = () => {
     if (screen.xs) {
@@ -61,6 +70,8 @@ const Dashboard = () => {
           </div>
 
           <div className="info_sec">
+            <p>{t('hello_welcome')}</p>
+            <p>{t('this_is_an_example')}</p>
             {screen.xs  ? (
               <>
                 <div className="sec_15_mob">
@@ -87,7 +98,6 @@ const Dashboard = () => {
                 </div>
               </>
             )}
-
             <div className="dropdown sec_15">
               <button className="dropbtn down-arrow">
                 {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
@@ -96,6 +106,14 @@ const Dashboard = () => {
                   : ''}
               </button>
             </div>
+            <Select
+              defaultValue={i18n.language}
+              style={{ width: 120 }}
+              onChange={handleChange}
+            >
+              <Option value="en">English</Option>
+              <Option value="fr">French</Option>={' '}
+            </Select>
           </div>
         </div>
         <div className="inner_sec">
