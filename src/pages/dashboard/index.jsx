@@ -29,7 +29,7 @@ const Dashboard = () => {
   const screen = useBreakpoint();
   const { signOut } = useContext(AccountContext);
   const { user } = useSelector((state) => state.common);
-  const { t, i18n, } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleChange = (lang) => {
     console.log(`selected ${lang}`);
@@ -64,30 +64,36 @@ const Dashboard = () => {
             <div className="menu_bar3"></div>
           </div>
           <div className="logo_head">
-            <div >
-              <img src={iHealthLogo} className={screen.xs ? "logo_sec_custom" : "logo_sec"}/>
+            <div>
+              <img
+                src={iHealthLogo}
+                className={screen.xs ? 'logo_sec_custom' : 'logo_sec'}
+              />
             </div>
           </div>
 
           <div className="info_sec">
-            <p>{t('hello_welcome')}</p>
-            <p>{t('this_is_an_example')}</p>
-            {screen.xs  ? (
-              <>
-                <div className={screen.xs ? "custom-ic" :"sec_15"}>
-                  <img
-                    src={bellIcon}
-                    onClick={() => handleClickNotification()}
-                    className={screen.xs ? "custom-ic-img" :""}
-                  />
-                </div>
-                <div  className={screen.xs ? "custom-ic" :"sec_15"}>
-                  <img src={chatIcon} 
-                  className={screen.xs ? "custom-ic-img" :""}
-                  />
-                </div>
-              </>
-            )}
+            {!screen.xs ? (
+              <div>
+                <p>{t('hello_welcome')}</p>
+                <p>{t('this_is_an_example')}</p>
+              </div>
+            ) : null}
+            <>
+              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+                <img
+                  src={bellIcon}
+                  onClick={() => handleClickNotification()}
+                  className={screen.xs ? 'custom-ic-img' : ''}
+                />
+              </div>
+              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+                <img
+                  src={chatIcon}
+                  className={screen.xs ? 'custom-ic-img' : ''}
+                />
+              </div>
+            </>
             <div className="dropdown sec_15">
               <button className="dropbtn down-arrow">
                 {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
@@ -96,14 +102,16 @@ const Dashboard = () => {
                   : ''}
               </button>
             </div>
-            <Select
-              defaultValue={i18n.language}
-              style={{ width: 120 }}
-              onChange={handleChange}
-            >
-              <Option value="en">English</Option>
-              <Option value="fr">French</Option>={' '}
-            </Select>
+            {!screen.xs ? (
+              <Select
+                defaultValue={i18n.language}
+                style={{ width: 120 }}
+                onChange={handleChange}
+              >
+                <Option value="en">English</Option>
+                <Option value="fr">French</Option>={' '}
+              </Select>
+            ) : null}
           </div>
         </div>
         <div className="inner_sec">
