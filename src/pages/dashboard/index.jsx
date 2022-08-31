@@ -70,8 +70,10 @@ const Dashboard = () => {
           </div>
 
           <div className="info_sec">
+          {/* <div>
             <p>{t('hello_welcome')}</p>
             <p>{t('this_is_an_example')}</p>
+          </div> */}
             {screen.xs  ? (
               <>
                 <div className="sec_15_mob">
@@ -98,14 +100,6 @@ const Dashboard = () => {
                 </div>
               </>
             )}
-            <div className="dropdown sec_15">
-              <button className="dropbtn down-arrow">
-                {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
-                {user && user.family_name
-                  ? user.family_name.charAt(0).toUpperCase()
-                  : ''}
-              </button>
-            </div>
             <Select
               defaultValue={i18n.language}
               style={{ width: 120 }}
@@ -114,6 +108,14 @@ const Dashboard = () => {
               <Option value="en">English</Option>
               <Option value="fr">French</Option>={' '}
             </Select>
+            <div className="dropdown sec_15">
+              <button className="dropbtn down-arrow">
+                {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
+                {user && user.family_name
+                  ? user.family_name.charAt(0).toUpperCase()
+                  : ''}
+              </button>
+            </div>
           </div>
         </div>
         <div className="inner_sec">
