@@ -13,7 +13,7 @@ import msgIcon from '../../assets/img/msg-blk.svg';
 import user2Icon from '../../assets/img/user2.png';
 import user3Icon from '../../assets/img/user3.png';
 
-import { Grid, Tag } from 'antd';
+import { Grid, Tag, Drawer, Space } from 'antd';
 import LeftSidebar from './components/Leftsidebar';
 import RightSidebar from './components/RightSidebar';
 
@@ -52,7 +52,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className="outer_box">
-        <div className="top_header">
+        <div className="top_header" style={{zIndex:1001}}>
           <div
             className={isShowLeftSidebar ? 'change' : 'menu_icon'}
             onClick={() => {
@@ -64,12 +64,10 @@ const Dashboard = () => {
             <div className="menu_bar3"></div>
           </div>
           <div className="logo_head">
-            <div>
               <img
                 src={iHealthLogo}
                 className={screen.xs ? 'logo_sec_custom' : 'logo_sec'}
               />
-            </div>
           </div>
 
           <div className="info_sec">
@@ -124,7 +122,18 @@ const Dashboard = () => {
             }
           ></div>
           {isShowLeftSidebar ? (
-            <LeftSidebar display={isShowLeftSidebar} signOut={signOut} />
+              <Drawer
+                placement="left"
+                visible={isShowLeftSidebar}
+                onClose={handleToggle}
+                width={280}
+                // closable={false}
+                // height={600}
+                headerStyle={{display:'none !important'}}
+               
+              >
+                <LeftSidebar display={isShowLeftSidebar} signOut={signOut} />
+              </Drawer>
           ) : (
             <LeftSidebar signOut={signOut} />
           )}

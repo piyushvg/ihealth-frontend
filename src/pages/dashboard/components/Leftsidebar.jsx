@@ -37,9 +37,14 @@ const LeftSidebar = ({display,signOut}) => {
             <i className="contact"></i>
             <span className="menu_txt">Community </span>
           </li>
-          <li className="menu_tap absbtm" onClick={signOut}>
+          {/* <li className="menu_tap absbtm" onClick={signOut}>
             {' '}
             <i className="logout"></i>
+            <span className="menu_txt">Logout </span>
+          </li> */}
+          <li  onClick={signOut}>
+            {' '}
+            <i ></i>
             <span className="menu_txt">Logout </span>
           </li>
         </ul>
