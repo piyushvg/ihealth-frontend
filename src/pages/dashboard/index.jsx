@@ -334,7 +334,16 @@ const Dashboard = () => {
             </div>
           </div>
           {isShowNotification ? (
+             <Drawer
+             placement="right"
+             visible={isShowNotification}
+             onClose={handleToggle}
+             width={330}
+             headerStyle={{display:'none !important'}}
+            
+           >
             <RightSidebar display={isShowNotification} />
+            </Drawer>
           ) : (
             <RightSidebar />
           )}
