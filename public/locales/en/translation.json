@@ -1,6 +1,78 @@
 {
     "select_language": "Select Language",
-    "hello_welcome": "Hello, Welcome",
-    "this_is_an_example": "This is an example",
-    "please_enter_name": "Please enter your name"
+    "signin": {
+        "header": "Sign in",
+        "email": "Email",
+        "password": "Password",
+        "forgot_password": "Forgot password",
+        "not_member": "Not a member",
+        "get_started": "Get started"
+    },
+    "onboarding": {
+        "continue": "Continue",
+        "step_1": {
+            "title": "Enroll in iHealthOx programs",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_2": {
+            "title": "Our care concierge on standby",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_3": {
+            "title": "Privacy is important to us",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_4": {
+            "title": "Privacy is important to us",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_5": {
+            "title": "Privacy is important to us",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        }
+    },
+    "signup": {
+        "header": "Create an account",
+        "first_name": "First name",
+        "last_name": "Last name",
+        "email": "Email",
+        "phone_number": "Phone",
+        "password": "Password",
+        "confirm_password": "Confirm password",
+        "get_started": "Get started",
+        "signin": "Sign in"
+    },
+    "dashboard": {
+        "left_sidebar": {
+            "search": "Search",
+            "home": "Home",
+            "myhealth": "My Health",
+            "resources": "IHealthOX Resources",
+            "profile": "Profile",
+            "community": "Community",
+            "logout": "Logout"
+        },
+        "rigth_sidebar": {
+            "notifications": "Notifications",
+            "inbox": "Inbox",
+            "today": "Today",
+            "yesterday": "Yesterday",
+            "week": "This week"
+        },
+        "main_section": {
+            "care_plan_name": "Care plan name",
+            "care_plan_des": "This text informs user of an upcoming session or assessment.",
+            "go_to_assessment": "Go to assessment",
+            "mood_score_1": "Mood Score",
+            "mood_score_2": "Your latest mood score",
+            "sleep_score_1": "Sleep score",
+            "sleep_score_2": "Your latest sleep score",
+            "anxiety_score_1": "Anxiety Score",
+            "anxiety_score_2": "Your latest anxiety score",
+            "my_care_plan": "My care plans",
+            "last_therapy_session": "Last therapy session",
+            "next_therapy_session": "Next therapy session",
+            "my_care_team": "My care team"
+        }
+    }
 }

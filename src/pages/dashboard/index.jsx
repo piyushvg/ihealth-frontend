@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import './style.css';
@@ -17,7 +17,6 @@ import { Grid, Tag } from 'antd';
 import LeftSidebar from './components/Leftsidebar';
 import RightSidebar from './components/RightSidebar';
 
-import { AccountContext } from '../../service/Account';
 import { useTranslation } from 'react-i18next';
 import { Select } from 'antd';
 const { Option } = Select;
@@ -27,9 +26,8 @@ const Dashboard = () => {
   const [isShowNotification, setIsShowNotification] = useState(false);
   const { useBreakpoint } = Grid;
   const screen = useBreakpoint();
-  const { signOut } = useContext(AccountContext);
   const { user } = useSelector((state) => state.common);
-  const { t, i18n, } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleChange = (lang) => {
     console.log(`selected ${lang}`);
@@ -70,11 +68,7 @@ const Dashboard = () => {
           </div>
 
           <div className="info_sec">
-          {/* <div>
-            <p>{t('hello_welcome')}</p>
-            <p>{t('this_is_an_example')}</p>
-          </div> */}
-            {screen.xs  ? (
+            {screen.xs ? (
               <>
                 <div className="sec_15_mob">
                   <img
@@ -127,18 +121,12 @@ const Dashboard = () => {
                 : { display: 'none' }
             }
           ></div>
-          {isShowLeftSidebar ? (
-            <LeftSidebar display={isShowLeftSidebar} signOut={signOut} />
-          ) : (
-            <LeftSidebar signOut={signOut} />
-          )}
+          <LeftSidebar display={isShowLeftSidebar} />
           <div className="middel_sec">
             <div className="noti_box">
-              <h4>Care plan name </h4>
-              <p>
-                This text informs user of an upcoming session or assessment.
-              </p>
-              <button>Go to assessment</button>
+              <h4>{t('dashboard.main_section.care_plan_name')}</h4>
+              <p>{t('dashboard.main_section.care_plan_des')}</p>
+              <button>{t('dashboard.main_section.go_to_assessment')}</button>
               <a href="#" className="close"></a>
             </div>
             <div className="score_box">
@@ -152,8 +140,8 @@ const Dashboard = () => {
                     // style="--value:65"
                   ></div>
                 </div>
-                <h4>Mood score</h4>
-                <p>Your latest mood score </p>
+                <h4>{t('dashboard.main_section.mood_score_1')}</h4>
+                <p>{t('dashboard.main_section.mood_score_2')}</p>
               </div>
               <div className="box">
                 <div className="score">
@@ -165,8 +153,8 @@ const Dashboard = () => {
                     // style="--value:55"
                   ></div>
                 </div>
-                <h4>Sleep score</h4>
-                <p>Your latest sleep score </p>
+                <h4>{t('dashboard.main_section.sleep_score_1')}</h4>
+                <p>{t('dashboard.main_section.sleep_score_2')}</p>
               </div>
               <div className="box">
                 <div className="score">
@@ -178,14 +166,14 @@ const Dashboard = () => {
                     // style="--value:35"
                   ></div>
                 </div>
-                <h4>Anxiety score</h4>
-                <p>Your latest anxiety score</p>
+                <h4>{t('dashboard.main_section.anxiety_score_1')}</h4>
+                <p>{t('dashboard.main_section.anxiety_score_2')}</p>
               </div>
             </div>
 
             <div className="care_box">
               <div className="tittle">
-                <h4>My care plans</h4>
+                <h4>{t('dashboard.main_section.my_care_plan')}</h4>
                 <span className="">
                   <svg viewBox="0 0 24 24" width="24" height="24" className="">
                     <path
@@ -198,10 +186,16 @@ const Dashboard = () => {
               </div>
               <p>
                 <span>
-                  <strong>Last therapy session: </strong> 02/03/22
+                  <strong>
+                    {t('dashboard.main_section.last_therapy_session')}:{' '}
+                  </strong>{' '}
+                  02/03/22
                 </span>
                 <span>
-                  <strong>Next therapy session: </strong> 04/04/22
+                  <strong>
+                    {t('dashboard.main_section.next_therapy_session')}:{' '}
+                  </strong>{' '}
+                  04/04/22
                 </span>
               </p>
               <div className="scroll_box">
@@ -257,7 +251,7 @@ const Dashboard = () => {
 
             <div className="myteam_box">
               <div className="tittle">
-                <h4>My care team</h4>
+                <h4>{t('dashboard.main_section.my_care_team')}</h4>
                 <span className="">
                   <svg viewBox="0 0 24 24" width="24" height="24" className="">
                     <path

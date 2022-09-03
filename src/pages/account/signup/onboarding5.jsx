@@ -1,7 +1,10 @@
 import React from 'react';
 import iHealthLogo from '../../../assets/img/iHealthOX-Logo.svg';
 import LifeSaverSmartPhoneLogo from '../../../assets/img/LifesaversSmartphone.svg';
+import { useTranslation } from 'react-i18next';
+
 const OnBoarding5 = (props) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="outer_box">
@@ -34,14 +37,10 @@ const OnBoarding5 = (props) => {
               <a className="dot_fill"></a>
               <a className=""></a>
             </div>
-            <div className="ttltxt">Privacy is important to us</div>
-            <div className="paratxt">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id
-              ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel
-              et etiam.
-            </div>
+            <div className="ttltxt">{t('onboarding.step_5.title')}</div>
+            <div className="paratxt">{t('onboarding.step_5.des')}</div>
             <a className="btn_log" onClick={() => props.setSteps(0)}>
-              Continue
+              {t('onboarding.continue')}
             </a>
           </div>
         </div>

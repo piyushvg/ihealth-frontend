@@ -1,8 +1,10 @@
 import React from 'react';
 import iHealthLogo from '../../../assets/img/iHealthOX-Logo.svg';
 import HomeSecoredLogo from '../../../assets/img/HomeSecured.svg';
+import { useTranslation } from 'react-i18next';
 
 const OnBoarding3 = (props) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="outer_box">
@@ -35,14 +37,10 @@ const OnBoarding3 = (props) => {
               <a className=""></a>
               <a className=""></a>
             </div>
-            <div className="ttltxt">Privacy is important to us</div>
-            <div className="paratxt">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id
-              ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel
-              et etiam.
-            </div>
+            <div className="ttltxt">{t('onboarding.step_3.title')}</div>
+            <div className="paratxt">{t('onboarding.step_3.des')}</div>
             <a className="btn_log" onClick={() => props.setSteps(4)}>
-              Continue
+              {t('onboarding.continue')}
             </a>
           </div>
         </div>

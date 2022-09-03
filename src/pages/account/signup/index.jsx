@@ -14,6 +14,7 @@ import { Field, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { isLoadingHandler } from '../../../redux/reducer/commonSlice';
 import { message } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = () => {
   let params = {
@@ -61,6 +62,7 @@ const SignUp = (props) => {
   const navigate = useNavigate();
   let location = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [steps, setSteps] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -150,10 +152,10 @@ const SignUp = (props) => {
 
               <div className="main-login reg_sec">
                 <div className="mflex step_6">
-                  <h1>Create an account</h1>
+                  <h1>{t('signup.header')}</h1>
                   <div className="w_100">
                     <div className="w_50lft">
-                      <label>First name *</label>
+                      <label>{t('signup.first_name')}*</label>
                       <Field
                         type="text"
                         name="first_name"
@@ -162,7 +164,6 @@ const SignUp = (props) => {
                             ? 'alert_err is-invalid'
                             : ''
                         }`}
-                        placeholder="First name"
                         autoComplete="off"
                       />
                       <ErrorMessage
@@ -172,7 +173,7 @@ const SignUp = (props) => {
                       />
                     </div>
                     <div className="w_50rgt">
-                      <label>Last name *</label>
+                      <label>{t('signup.last_name')}*</label>
                       <Field
                         type="text"
                         name="last_name"
@@ -181,7 +182,6 @@ const SignUp = (props) => {
                             ? 'alert_err is-invalid'
                             : ''
                         }`}
-                        placeholder="Last name"
                         autoComplete="off"
                       />
                       <ErrorMessage
@@ -193,7 +193,7 @@ const SignUp = (props) => {
                   </div>
                   <div className="w_100">
                     <div className="w_50lft">
-                      <label>Email *</label>
+                      <label>{t('signup.email')}*</label>
                       <Field
                         type="text"
                         name="email"
@@ -202,7 +202,6 @@ const SignUp = (props) => {
                             ? 'alert_err is-invalid'
                             : ''
                         }`}
-                        placeholder="Email "
                         autoComplete="off"
                       />
                       <ErrorMessage
@@ -212,7 +211,7 @@ const SignUp = (props) => {
                       />
                     </div>
                     <div className="w_50rgt">
-                      <label>Phone *</label>
+                      <label>{t('signup.phone_number')}*</label>
                       <Field
                         type="text"
                         name="phone_number"
@@ -221,7 +220,6 @@ const SignUp = (props) => {
                             ? 'alert_err is-invalid'
                             : ''
                         }`}
-                        placeholder="Phone "
                         autoComplete="off"
                       />
                       <ErrorMessage
@@ -234,11 +232,10 @@ const SignUp = (props) => {
 
                   <div className="w_100">
                     <div className="w_50lft">
-                      <label>Password *</label>
+                      <label>{t('signup.password')}*</label>
                       <Field
                         type="password"
                         name="password"
-                        placeholder="Password"
                         className={`inp_box  ${
                           touched.password && errors.password
                             ? 'alert_err is-invalid'
@@ -253,11 +250,10 @@ const SignUp = (props) => {
                       />
                     </div>
                     <div className="w_50rgt">
-                      <label>Confirm password *</label>
+                      <label>{t('signup.confirm_password')}*</label>
                       <Field
                         type="password"
                         name="confirm_password"
-                        placeholder="Confirm Password"
                         className={`inp_box  ${
                           touched.confirm_password && errors.confirm_password
                             ? 'alert_err is-invalid'
@@ -276,7 +272,7 @@ const SignUp = (props) => {
                   <div className="w_100 center">
                     <input
                       type="submit"
-                      value="Get started"
+                      value={t('signup.get_started')}
                       className="btn_log"
                       disabled={!isValid || !dirty}
                       onClick={formikBag.handleSubmit}
@@ -288,7 +284,7 @@ const SignUp = (props) => {
                   <div className="w_100 center">
                     <input
                       type="button"
-                      value="Sign In"
+                      value={t('signup.signin')}
                       className="btn_reg"
                       onClick={() => navigate('/signin')}
                     />

@@ -336,7 +336,7 @@ ul {
 .noti_box button {
     background: #9E3D95;
     border-radius: 6px;
-    width: 161px;
+    width: 165px;
     height: 36px;
     display: flex;
     flex-direction: row;
@@ -603,7 +603,6 @@ ul {
 .wnotibell .tab {
     display: flex;
     align-items: center;
-    width: 50%;
     justify-content: center;
     padding: 15px;
 }
