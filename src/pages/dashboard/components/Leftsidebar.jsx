@@ -1,7 +1,5 @@
 import React ,{useContext} from 'react';
 
-
-
 const LeftSidebar = ({display,signOut}) => {
 
   return (
@@ -38,7 +36,6 @@ const LeftSidebar = ({display,signOut}) => {
             <span className="menu_txt">Community </span>
           </li>
           <li className="menu_tap absbtm" onClick={signOut}>
-            {' '}
             <i className="logout"></i>
             <span className="menu_txt">Logout </span>
           </li>
