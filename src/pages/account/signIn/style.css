@@ -39,7 +39,7 @@
       float: left;
       width: 100%;
   }
-  .logo_sec {
+  .signIn_logo_sec {
       position: relative;
       padding: 15px 25px;
       float: left;
@@ -255,7 +255,7 @@
   .outer_box {
   height: 100%; padding: 10px 15px;
   }
-  .logo_sec {
+  .signIn_logo_sec {
       position: relative;
       padding: 15px 0px;
       float: left;

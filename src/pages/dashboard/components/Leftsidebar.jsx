@@ -1,4 +1,3 @@
-import { t } from 'i18next';
 import React, { useContext } from 'react';
 import { AccountContext } from '../../../service/Account';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +51,6 @@ const LeftSidebar = ({ display }) => {
             </span>
           </li>
           <li className="menu_tap absbtm" onClick={signOut}>
-            {' '}
             <i className="logout"></i>
             <span className="menu_txt">
               {t('dashboard.left_sidebar.logout')}

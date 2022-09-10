@@ -13,7 +13,7 @@ import msgIcon from '../../assets/img/msg-blk.svg';
 import user2Icon from '../../assets/img/user2.png';
 import user3Icon from '../../assets/img/user3.png';
 
-import { Grid, Tag } from 'antd';
+import { Grid, Tag, Drawer, Space } from 'antd';
 import LeftSidebar from './components/Leftsidebar';
 import RightSidebar from './components/RightSidebar';
 
@@ -50,7 +50,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className="outer_box">
-        <div className="top_header">
+        <div className="top_header" style={{ zIndex: 1001 }}>
           <div
             className={isShowLeftSidebar ? 'change' : 'menu_icon'}
             onClick={() => {
@@ -62,46 +62,34 @@ const Dashboard = () => {
             <div className="menu_bar3"></div>
           </div>
           <div className="logo_head">
-            <div className="logo_sec">
-              <img src={iHealthLogo} />
-            </div>
+            <img
+              src={iHealthLogo}
+              className={screen.xs ? 'logo_sec_custom' : 'logo_sec'}
+            />
           </div>
 
           <div className="info_sec">
-            {screen.xs ? (
-              <>
-                <div className="sec_15_mob">
-                  <img
-                    src={bellIcon}
-                    onClick={() => handleClickNotification()}
-                    style={{ width: 24, height: 24 }}
-                  />
-                </div>
-                <div className="sec_15_mob">
-                  <img src={chatIcon} style={{ width: 24, height: 24 }} />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="sec_15">
-                  <img
-                    src={bellIcon}
-                    onClick={() => handleClickNotification()}
-                  />
-                </div>
-                <div className="sec_15">
-                  <img src={chatIcon} />
-                </div>
-              </>
-            )}
-            <Select
-              defaultValue={i18n.language}
-              style={{ width: 120 }}
-              onChange={handleChange}
-            >
-              <Option value="en">English</Option>
-              <Option value="fr">French</Option>={' '}
-            </Select>
+            {!screen.xs ? (
+              <div>
+                <p>{t('hello_welcome')}</p>
+                <p>{t('this_is_an_example')}</p>
+              </div>
+            ) : null}
+            <>
+              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+                <img
+                  src={bellIcon}
+                  onClick={() => handleClickNotification()}
+                  className={screen.xs ? 'custom-ic-img' : ''}
+                />
+              </div>
+              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+                <img
+                  src={chatIcon}
+                  className={screen.xs ? 'custom-ic-img' : ''}
+                />
+              </div>
+            </>
             <div className="dropdown sec_15">
               <button className="dropbtn down-arrow">
                 {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
@@ -110,6 +98,16 @@ const Dashboard = () => {
                   : ''}
               </button>
             </div>
+            {!screen.xs ? (
+              <Select
+                defaultValue={i18n.language}
+                style={{ width: 120 }}
+                onChange={handleChange}
+              >
+                <Option value="en">English</Option>
+                <Option value="fr">French</Option>={' '}
+              </Select>
+            ) : null}
           </div>
         </div>
         <div className="inner_sec">
@@ -121,7 +119,21 @@ const Dashboard = () => {
                 : { display: 'none' }
             }
           ></div>
-          <LeftSidebar display={isShowLeftSidebar} />
+          {isShowLeftSidebar ? (
+            <Drawer
+              placement="left"
+              visible={isShowLeftSidebar}
+              onClose={handleToggle}
+              width={280}
+              // closable={false}
+              // height={600}
+              headerStyle={{ display: 'none !important' }}
+            >
+              <LeftSidebar display={isShowLeftSidebar} />
+            </Drawer>
+          ) : (
+            <LeftSidebar />
+          )}
           <div className="middel_sec">
             <div className="noti_box">
               <h4>{t('dashboard.main_section.care_plan_name')}</h4>
@@ -323,7 +335,15 @@ const Dashboard = () => {
             </div>
           </div>
           {isShowNotification ? (
-            <RightSidebar display={isShowNotification} />
+            <Drawer
+              placement="right"
+              visible={isShowNotification}
+              onClose={handleToggle}
+              width={330}
+              headerStyle={{ display: 'none !important' }}
+            >
+              <RightSidebar display={isShowNotification} />
+            </Drawer>
           ) : (
             <RightSidebar />
           )}
