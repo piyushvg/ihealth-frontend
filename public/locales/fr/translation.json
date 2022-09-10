@@ -1,6 +1,78 @@
 {
-    "select_language": "Choisir la langue",
-    "hello_welcome": "Bonjour, Bienvenue",
-    "this_is_an_example": "Ceci est un exemple",
-    "please_enter_name": "Veuillez saisir le nom"
+    "select_language": "Sélectionner la langue",
+    "signin": {
+        "header": "Connexion",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "forgot_password": "Mot de passe oublié",
+        "not_member": "Pas membre",
+        "get_started": "Commencer"
+    },
+    "onboarding": {
+        "continue": "Continuer",
+        "step_1": {
+            "title": "Inscrivez-vous aux programmes iHealthOx",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing élite. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_2": {
+            "title": "Notre concierge de soins en attente",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing élite. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_3": {
+            "title": "La confidentialité est importante pour nous",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing élite. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_4": {
+            "title": "La confidentialité est importante pour nous",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing élite. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        },
+        "step_5": {
+            "title": "La confidentialité est importante pour nous",
+            "des": "Lorem ipsum dolor sit amet, consectetur adipiscing élite. Urna id ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel et etiam."
+        }
+    },
+    "signup": {
+        "header": "Créer un compte",
+        "first_name": "Prénom",
+        "last_name": "Nom",
+        "email": "E-mail",
+        "phone_number": "Téléphone",
+        "password": "Mot de passe",
+        "confirm_password": "Confirmer le mot de passe",
+        "get_started": "Commencer",
+        "signin": "Connexion"
+    },
+    "dashboard": {
+        "left_sidebar": {
+            "search": "Chercher",
+            "home": "Maison",
+            "myhealth": "Ma santé",
+            "resources": "Ressources IHealthOX",
+            "profile": "Profil",
+            "community": "Communauté",
+            "logout": "Déconnexion"
+        },
+        "rigth_sidebar": {
+            "notifications": "Notifications",
+            "inbox": "Boîte de réception",
+            "today": "Aujourd'hui",
+            "yesterday": "Hier",
+            "week": "Cette semaine"
+        },
+        "main_section": {
+            "care_plan_name": "Nom du plan de soins",
+            "care_plan_des": "Ce texte informe l'utilisateur d'une session ou d'une évaluation à venir.",
+            "go_to_assessment": "Aller à l'évaluation",
+            "mood_score_1": "Note d'humeur",
+            "mood_score_2": "Votre dernier score d'humeur",
+            "sleep_score_1": "Score de sommeil",
+            "sleep_score_2": "Votre dernier score de sommeil",
+            "anxiety_score_1": "Score d'anxiété",
+            "anxiety_score_2": "Votre dernier score d'anxiété",
+            "my_care_plan": "Mes plans de soins",
+            "last_therapy_session": "Dernière séance de thérapie",
+            "next_therapy_session": "Prochaine séance de thérapie",
+            "my_care_team": "Mon équipe de soins"
+        }
+    }
 }

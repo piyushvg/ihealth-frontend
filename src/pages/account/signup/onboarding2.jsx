@@ -1,9 +1,10 @@
 import React from 'react';
 import iHealthLogo from '../../../assets/img/iHealthOX-Logo.svg';
 import LifeSaverFamilyLogo from '../../../assets/img/LifesaversFamily.svg';
-import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const OnBoarding2 = (props) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="outer_box">
@@ -35,14 +36,10 @@ const OnBoarding2 = (props) => {
               <a className=""></a>
               <a className=""></a>
             </div>
-            <div className="ttltxt">Our care concierge on standby</div>
-            <div className="paratxt">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id
-              ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel
-              et etiam.
-            </div>
+            <div className="ttltxt">{t('onboarding.step_2.title')}</div>
+            <div className="paratxt">{t('onboarding.step_2.des')}</div>
             <a className="btn_log" onClick={() => props.setSteps(3)}>
-              Continue
+              {t('onboarding.continue')}
             </a>
           </div>
         </div>

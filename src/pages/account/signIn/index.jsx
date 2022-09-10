@@ -11,6 +11,7 @@ import {
   userHandler,
 } from '../../../redux/reducer/commonSlice';
 import { message } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = () => {
   let params = {
@@ -32,6 +33,7 @@ const LoginSchema = Yup.object().shape({
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { authenticate } = useContext(AccountContext);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -75,9 +77,9 @@ const SignIn = () => {
                 </div>
               </div>
               <div className="main-login">
-                <h1>Sign in</h1>
+                <h1>{t('signin.header')}</h1>
                 <div className="w_100">
-                  <label>Email</label>
+                  <label>{t('signin.email')}</label>
                   <Field
                     type="email"
                     name="email"
@@ -86,7 +88,6 @@ const SignIn = () => {
                         ? 'alert_err is-invalid'
                         : ''
                     }`}
-                    placeholder="Email address "
                     autocomplete="off"
                     autoFocus
                   />
@@ -98,7 +99,7 @@ const SignIn = () => {
                 </div>
 
                 <div className="w_100">
-                  <label>Password</label>
+                  <label>{t('signin.password')}</label>
                   <input
                     type="checkbox"
                     id="show-password"
@@ -154,8 +155,8 @@ const SignIn = () => {
                 </div>
 
                 <div className="w_100 flex">
-                  <a href="#">Forgot password?</a>
-                  <NavLink to="/register">Not a member?</NavLink>
+                  <a href="#">{t('signin.forgot_password')}?</a>
+                  <NavLink to="/register">{t('signin.not_member')}?</NavLink>
                 </div>
                 <div className="w_100 center">
                   <input
@@ -172,7 +173,7 @@ const SignIn = () => {
                 <div className="w_100 center">
                   <input
                     type="button"
-                    value="Get started"
+                    value={t('signin.get_started')}
                     className="btn_reg"
                     onClick={() =>
                       navigate('/register', { state: { steps: 0 } })

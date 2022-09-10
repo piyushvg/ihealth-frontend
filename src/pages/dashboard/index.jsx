@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import './style.css';
@@ -17,7 +17,6 @@ import { Grid, Tag, Drawer, Space } from 'antd';
 import LeftSidebar from './components/Leftsidebar';
 import RightSidebar from './components/RightSidebar';
 
-import { AccountContext } from '../../service/Account';
 import { useTranslation } from 'react-i18next';
 import { Select } from 'antd';
 const { Option } = Select;
@@ -27,7 +26,6 @@ const Dashboard = () => {
   const [isShowNotification, setIsShowNotification] = useState(false);
   const { useBreakpoint } = Grid;
   const screen = useBreakpoint();
-  const { signOut } = useContext(AccountContext);
   const { user } = useSelector((state) => state.common);
   const { t, i18n } = useTranslation();
 
@@ -52,7 +50,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className="outer_box">
-        <div className="top_header" style={{zIndex:1001}}>
+        <div className="top_header" style={{ zIndex: 1001 }}>
           <div
             className={isShowLeftSidebar ? 'change' : 'menu_icon'}
             onClick={() => {
@@ -64,34 +62,26 @@ const Dashboard = () => {
             <div className="menu_bar3"></div>
           </div>
           <div className="logo_head">
-              <img
-                src={iHealthLogo}
-                className={screen.xs ? 'logo_sec_custom' : 'logo_sec'}
-              />
+            <img
+              src={iHealthLogo}
+              className={screen.xs ? 'logo_sec_custom' : 'logo_sec'}
+            />
           </div>
 
           <div className="info_sec">
-            {!screen.xs ? (
-              <div>
-                <p>{t('hello_welcome')}</p>
-                <p>{t('this_is_an_example')}</p>
-              </div>
-            ) : null}
-            <>
-              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
-                <img
-                  src={bellIcon}
-                  onClick={() => handleClickNotification()}
-                  className={screen.xs ? 'custom-ic-img' : ''}
-                />
-              </div>
-              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
-                <img
-                  src={chatIcon}
-                  className={screen.xs ? 'custom-ic-img' : ''}
-                />
-              </div>
-            </>
+            <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+              <img
+                src={bellIcon}
+                onClick={() => handleClickNotification()}
+                className={screen.xs ? 'custom-ic-img' : ''}
+              />
+            </div>
+            <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+              <img
+                src={chatIcon}
+                className={screen.xs ? 'custom-ic-img' : ''}
+              />
+            </div>
             <div className="dropdown sec_15">
               <button className="dropbtn down-arrow">
                 {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
@@ -122,28 +112,25 @@ const Dashboard = () => {
             }
           ></div>
           {isShowLeftSidebar ? (
-              <Drawer
-                placement="left"
-                visible={isShowLeftSidebar}
-                onClose={handleToggle}
-                width={280}
-                // closable={false}
-                // height={600}
-                headerStyle={{display:'none !important'}}
-               
-              >
-                <LeftSidebar display={isShowLeftSidebar} signOut={signOut} />
-              </Drawer>
+            <Drawer
+              placement="left"
+              visible={isShowLeftSidebar}
+              onClose={handleToggle}
+              width={280}
+              // closable={false}
+              // height={600}
+              headerStyle={{ display: 'none !important' }}
+            >
+              <LeftSidebar display={isShowLeftSidebar} />
+            </Drawer>
           ) : (
-            <LeftSidebar signOut={signOut} />
+            <LeftSidebar />
           )}
           <div className="middel_sec">
             <div className="noti_box">
-              <h4>Care plan name </h4>
-              <p>
-                This text informs user of an upcoming session or assessment.
-              </p>
-              <button>Go to assessment</button>
+              <h4>{t('dashboard.main_section.care_plan_name')}</h4>
+              <p>{t('dashboard.main_section.care_plan_des')}</p>
+              <button>{t('dashboard.main_section.go_to_assessment')}</button>
               <a href="#" className="close"></a>
             </div>
             <div className="score_box">
@@ -157,8 +144,8 @@ const Dashboard = () => {
                     // style="--value:65"
                   ></div>
                 </div>
-                <h4>Mood score</h4>
-                <p>Your latest mood score </p>
+                <h4>{t('dashboard.main_section.mood_score_1')}</h4>
+                <p>{t('dashboard.main_section.mood_score_2')}</p>
               </div>
               <div className="box">
                 <div className="score">
@@ -170,8 +157,8 @@ const Dashboard = () => {
                     // style="--value:55"
                   ></div>
                 </div>
-                <h4>Sleep score</h4>
-                <p>Your latest sleep score </p>
+                <h4>{t('dashboard.main_section.sleep_score_1')}</h4>
+                <p>{t('dashboard.main_section.sleep_score_2')}</p>
               </div>
               <div className="box">
                 <div className="score">
@@ -183,14 +170,14 @@ const Dashboard = () => {
                     // style="--value:35"
                   ></div>
                 </div>
-                <h4>Anxiety score</h4>
-                <p>Your latest anxiety score</p>
+                <h4>{t('dashboard.main_section.anxiety_score_1')}</h4>
+                <p>{t('dashboard.main_section.anxiety_score_2')}</p>
               </div>
             </div>
 
             <div className="care_box">
               <div className="tittle">
-                <h4>My care plans</h4>
+                <h4>{t('dashboard.main_section.my_care_plan')}</h4>
                 <span className="">
                   <svg viewBox="0 0 24 24" width="24" height="24" className="">
                     <path
@@ -203,10 +190,16 @@ const Dashboard = () => {
               </div>
               <p>
                 <span>
-                  <strong>Last therapy session: </strong> 02/03/22
+                  <strong>
+                    {t('dashboard.main_section.last_therapy_session')}:{' '}
+                  </strong>{' '}
+                  02/03/22
                 </span>
                 <span>
-                  <strong>Next therapy session: </strong> 04/04/22
+                  <strong>
+                    {t('dashboard.main_section.next_therapy_session')}:{' '}
+                  </strong>{' '}
+                  04/04/22
                 </span>
               </p>
               <div className="scroll_box">
@@ -262,7 +255,7 @@ const Dashboard = () => {
 
             <div className="myteam_box">
               <div className="tittle">
-                <h4>My care team</h4>
+                <h4>{t('dashboard.main_section.my_care_team')}</h4>
                 <span className="">
                   <svg viewBox="0 0 24 24" width="24" height="24" className="">
                     <path
@@ -334,15 +327,14 @@ const Dashboard = () => {
             </div>
           </div>
           {isShowNotification ? (
-             <Drawer
-             placement="right"
-             visible={isShowNotification}
-             onClose={handleToggle}
-             width={330}
-             headerStyle={{display:'none !important'}}
-            
-           >
-            <RightSidebar display={isShowNotification} />
+            <Drawer
+              placement="right"
+              visible={isShowNotification}
+              onClose={handleToggle}
+              width={330}
+              headerStyle={{ display: 'none !important' }}
+            >
+              <RightSidebar display={isShowNotification} />
             </Drawer>
           ) : (
             <RightSidebar />

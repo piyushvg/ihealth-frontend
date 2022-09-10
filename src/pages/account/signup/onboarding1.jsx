@@ -1,7 +1,10 @@
 import React from 'react';
 import iHealthLogo from '../../../assets/img/iHealthOX-Logo.svg';
 import LifeSaverBrainLogo from '../../../assets/img/LifesaversBrain.svg';
+import { useTranslation } from 'react-i18next';
+
 const Onboarding = (props) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="outer_box">
@@ -34,14 +37,10 @@ const Onboarding = (props) => {
               <a className=""></a>
               <a className=""></a>
             </div>
-            <div className="ttltxt">Enroll in iHealthOx programs </div>
-            <div className="paratxt">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna id
-              ut aliquet eu sed neque, posuere nisi. Sed consequat placerat vel
-              et etiam.
-            </div>
+            <div className="ttltxt">{t('onboarding.step_1.title')}</div>
+            <div className="paratxt">{t('onboarding.step_1.des')}</div>
             <a className="btn_log" onClick={() => props.setSteps(2)}>
-              Continue
+              {t('onboarding.continue')}
             </a>
           </div>
         </div>
