@@ -69,27 +69,19 @@ const Dashboard = () => {
           </div>
 
           <div className="info_sec">
-            {!screen.xs ? (
-              <div>
-                <p>{t('hello_welcome')}</p>
-                <p>{t('this_is_an_example')}</p>
-              </div>
-            ) : null}
-            <>
-              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
-                <img
-                  src={bellIcon}
-                  onClick={() => handleClickNotification()}
-                  className={screen.xs ? 'custom-ic-img' : ''}
-                />
-              </div>
-              <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
-                <img
-                  src={chatIcon}
-                  className={screen.xs ? 'custom-ic-img' : ''}
-                />
-              </div>
-            </>
+            <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+              <img
+                src={bellIcon}
+                onClick={() => handleClickNotification()}
+                className={screen.xs ? 'custom-ic-img' : ''}
+              />
+            </div>
+            <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
+              <img
+                src={chatIcon}
+                className={screen.xs ? 'custom-ic-img' : ''}
+              />
+            </div>
             <div className="dropdown sec_15">
               <button className="dropbtn down-arrow">
                 {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
