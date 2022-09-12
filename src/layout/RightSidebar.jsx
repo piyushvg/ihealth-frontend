@@ -1,6 +1,6 @@
 import React from 'react';
-import bellGreyIcon from '../../../assets/img/bell_grey.svg';
-import chatIcon from '../../../assets/img/chat-icon.svg';
+import bellGreyIcon from '../assets/img/bell_grey.svg';
+import chatIcon from '../assets/img/chat-icon.svg';
 import { useTranslation } from 'react-i18next';
 
 const RightSidebar = ({ display }) => {
