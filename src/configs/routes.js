@@ -7,14 +7,29 @@ import PublicRoutes from '../service/PublicRoutes';
 
 const SignIn = lazy(() => import('../pages/account/signIn'));
 const SignUp = lazy(() => import('../pages/account/signup'));
+const HomeLayout = lazy(() => import('../layout/homeLayout'));
 const Dashboard = lazy(() => import('../pages/dashboard'));
+const MyHealth = lazy(() => import('../pages/myHealth'));
 
 const AppRoute = () => {
   let routes = useRoutes([
     { path: '/signin', element: <PublicRoutes Component={SignIn} /> },
     { path: '/register', element: <PublicRoutes Component={SignUp} /> },
-    { path: '/dashboard', element: <ProtectedRoutes Component={Dashboard} /> },
-    { path: '/', element: <Navigate to="/dashboard" replace /> },
+    {
+      path: "/",
+      element: <ProtectedRoutes Component={HomeLayout} />,
+      children: [
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "/my-health",
+          element: <MyHealth />,
+        },
+        { path: '/', element: <Navigate to="/dashboard" replace /> },
+      ],
+    },
     { path: '*', element: <Navigate to="/" replace /> },
   ]);
   return <Account>{routes}</Account>;

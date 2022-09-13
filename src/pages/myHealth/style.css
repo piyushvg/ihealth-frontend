@@ -1,0 +1,215 @@
+
+/*myhealth page*/
+.tabb_tap {
+    background: #fff;
+    padding: 15px 0;
+    font-size: 14px;
+    border-radius: 5px;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+.tabb_tap .actv{color: #645CFA;}
+.mflx {
+    display: flex;
+    align-items: flex-start;
+    width: auto;
+    justify-content: space-between;
+}
+.lftx{
+	display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.w100{width: 100%;
+    margin: 30px auto;
+}
+.f28{font-size: 28px;}
+.grid {
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 170px;
+    position: relative;
+    display: flex;
+    align-items: center;box-shadow: 0px 0px 10px rgb(0 0 0 / 22%);
+    justify-content: space-between;
+}
+.down_arw {
+    display: inline-block;
+    transform: rotate(45deg);
+    position: relative;
+    top: -2px;
+    margin-left: 6px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+    border-width: 0px 1px 1px 0px;
+    padding: 3px;
+}
+.flter_ico {
+    padding: 9px 20px;
+    padding-right: 0;
+}
+.drp_dwn {
+    position: absolute;
+    top: 40px;
+    background: #fff;
+    width: 100%;
+    left: 0;
+    padding: 5px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 22%);
+}
+.optn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px ;
+    font-size: 14px;
+    color: #828287;
+}
+.grid_ico, .clndr_ico {
+    width: 16px;
+}
+.optn_slctd{background: rgba(100, 92, 250, 0.1);
+    border-radius: 4px;
+    color: #000;
+}
+.today, .upcoming, .past{    width: 32%;}
+.bdr_brng{
+width: 100%;
+    background: #9E3D95;
+    box-shadow: 0px 27px 58px rgb(206 21 21 / 16%), 0px 11.28px 24.231px rgb(206 21 21 / 12%);
+    border-radius: 4px;
+    height: 6px;
+    margin: 10px auto;
+}
+.bdr_yllw{
+width: 100%;
+background: #F7C033;
+box-shadow: 0px 27px 58px rgba(246, 192, 51, 0.16), 0px 11.28px 24.231px rgba(246, 192, 51, 0.115);
+border-radius: 4px;                                     
+    height: 6px;
+    margin: 10px auto;
+}
+.bdr_green{
+width: 100%;
+background: #2AB248;
+box-shadow: 0px 27px 58px rgba(90, 142, 156, 0.16), 0px 11.28px 24.231px rgba(90, 142, 156, 0.115);
+border-radius: 4px;                                     
+    height: 6px;
+    margin: 10px auto;
+}
+.sing_tab {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px auto;
+}
+.alngcntr{    align-items: center;}
+.brng_bx {
+    background: #9E3D95;
+    border-radius: 5px;
+    padding: 7px 10px;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.green_bx {
+    background: #2ab248;
+    border-radius: 5px;
+    padding: 7px 10px;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.yellw_bx {
+    background: #f7c033;
+    border-radius: 5px;
+    padding: 7px 10px;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.wht_tmr {
+    width: 15px;
+    height: 16px;
+    margin-right: 5px;
+}
+.attchd{display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.gry_attchd{
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+.add_atchd {
+    border: 1px solid #E2E2EA;
+    padding: 4px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f16_600 {
+    font-size: 16px;
+    margin: 16px 0px 8px 0px;
+    font-weight: 600;
+}
+.f12_400{font-size: 12px;
+    color: #8A8A98;
+    font-weight: 400;
+}
+.w100_mg0 {
+    width: 100%;
+    margin: auto;
+    overflow: auto;
+}
+
+
+/*myhealth page*/
+
+
+
+@media only screen and (min-width: 150px) and (max-width: 850px){
+
+.w100_mg0 {
+    width: 100%;
+    margin: auto;
+    overflow: auto;
+    border-radius: 5px;
+}
+.tabb_tap {
+    width: 600px;
+}
+.w100_mg0::-webkit-scrollbar {
+   display:none;
+ }
+.flx_clum {
+    flex-direction: column;
+}
+.f28 {
+    font-size: 22px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.lftx {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+.today, .upcoming, .past {
+    width: 100%;
+}
+
+
+}

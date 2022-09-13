@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { AccountContext } from '../../../service/Account';
+import { NavLink } from 'react-router-dom';
+import { AccountContext } from '../service/Account';
 import { useTranslation } from 'react-i18next';
 
 const LeftSidebar = ({ display }) => {
@@ -17,18 +18,28 @@ const LeftSidebar = ({ display }) => {
       </div>
       <div className="left_menu">
         <ul id="side-menu">
-          <li className="menu_tap menu_tap_act">
-            {' '}
-            <i className="home home_blu"></i>
-            <span className="menu_txt">{t('dashboard.left_sidebar.home')}</span>
-          </li>
-          <li className="menu_tap">
-            {' '}
-            <i className="myhealth"></i>
-            <span className="menu_txt">
-              {t('dashboard.left_sidebar.myhealth')}
-            </span>
-          </li>
+          <NavLink to="/dashboard">
+            {({ isActive }) => (
+              <li className={isActive ? 'menu_tap menu_tap_act' : 'menu_tap'}>
+                {' '}
+                <i className={isActive ? 'home home_blu' : 'home'}></i>
+                <span className="menu_txt">
+                  {t('dashboard.left_sidebar.home')}
+                </span>
+              </li>
+            )}
+          </NavLink>
+          <NavLink to="/my-health">
+            {({ isActive }) => (
+              <li className={isActive ? 'menu_tap menu_tap_act' : 'menu_tap'}>
+                {' '}
+                <i className={isActive ? 'myhealth myhealth_blu' : 'myhealth'}></i>
+                <span className="menu_txt">
+                  {t('dashboard.left_sidebar.myhealth')}
+                </span>
+              </li>
+            )}
+          </NavLink>
           <li className="menu_tap">
             {' '}
             <i className="resources"></i>
