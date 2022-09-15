@@ -12,18 +12,21 @@ import RightSidebar from './RightSidebar';
 
 import { useTranslation } from 'react-i18next';
 import { Select } from 'antd';
+import { useDispatch } from 'react-redux';
+import { notificationPanelHandler } from '../redux/reducer/commonSlice';
 
 import './style.css';
 
 const { Option } = Select;
 
 const HomeLayout = () => {
-  const [isShowLeftSidebar, setIsShowLeftSideBar] = useState(false);
-  const [isShowNotification, setIsShowNotification] = useState(false);
   const { useBreakpoint } = Grid;
   const screen = useBreakpoint();
-  const { user } = useSelector((state) => state.common);
   const { i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const { user, notificationPanel } = useSelector((state) => state.common);
+  const [isShowLeftSidebar, setIsShowLeftSideBar] = useState(false);
+  const [isShowNotification, setIsShowNotification] = useState(false);
 
   const handleChange = (lang) => {
     i18n.changeLanguage(lang);
@@ -38,6 +41,7 @@ const HomeLayout = () => {
   const handleClickNotification = () => {
     if (screen.xs) {
       setIsShowNotification(!isShowNotification);
+      dispatch(notificationPanelHandler(!isShowNotification));
     }
   };
   return (
@@ -122,7 +126,7 @@ const HomeLayout = () => {
           <div className="middel_sec">
             <Outlet />
           </div>
-          {isShowNotification ? (
+          {notificationPanel && isShowNotification ? (
             <Drawer
               placement="right"
               visible={isShowNotification}
@@ -132,9 +136,9 @@ const HomeLayout = () => {
             >
               <RightSidebar display={isShowNotification} />
             </Drawer>
-          ) : (
+          ) : notificationPanel ? (
             <RightSidebar />
-          )}
+          ) : null}
         </div>
       </div>
     </div>

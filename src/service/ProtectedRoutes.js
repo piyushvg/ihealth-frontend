@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AccountContext } from '../service/Account';
-import { isLoadingHandler, userHandler } from './../redux/reducer/commonSlice';
+import { isLoadingHandler, userHandler } from '../redux/reducer/commonSlice';
 
 const ProtectedRoutes = (props) => {
   const Component = props.Component;
