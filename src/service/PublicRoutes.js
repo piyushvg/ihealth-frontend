@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AccountContext } from '../service/Account';
-import { isLoadingHandler } from './../redux/reducer/commonSlice';
+import { isLoadingHandler } from '../redux/reducer/commonSlice';
 
 function PublicRoutes(props) {
   const Component = props.Component;

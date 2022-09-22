@@ -4,6 +4,7 @@ const initialState = {
   isLoggedIn: false,
   user: null,
   isLoading: false,
+  notificationPanel: false,
 };
 
 export const commonSlice = createSlice({
@@ -25,10 +26,18 @@ export const commonSlice = createSlice({
       state.user = null;
       state.isLoading = false;
     },
+    notificationPanelHandler: (state, action) => {
+      state.notificationPanel = action.payload;
+    },
   },
 });
 
-export const { isLoadingHandler, loggedInHandler, userHandler, logOutHandler } =
-  commonSlice.actions;
+export const {
+  isLoadingHandler,
+  loggedInHandler,
+  userHandler,
+  logOutHandler,
+  notificationPanelHandler,
+} = commonSlice.actions;
 
 export default commonSlice.reducer;
