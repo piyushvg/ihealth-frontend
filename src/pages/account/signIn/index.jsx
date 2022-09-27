@@ -155,7 +155,7 @@ const SignIn = () => {
                 </div>
 
                 <div className="w_100 flex">
-                  <a href="#">{t('signin.forgot_password')}?</a>
+                  <NavLink to="/forgotpassword">{t('signin.forgot_password')}?</NavLink>
                   <NavLink to="/register">{t('signin.not_member')}?</NavLink>
                 </div>
                 <div className="w_100 center">

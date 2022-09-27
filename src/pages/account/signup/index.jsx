@@ -195,7 +195,7 @@ const SignUp = (props) => {
                     <div className="w_50lft">
                       <label>{t('signup.email')}*</label>
                       <Field
-                        type="text"
+                        type="email"
                         name="email"
                         className={`inp_box  ${
                           touched.email && errors.email

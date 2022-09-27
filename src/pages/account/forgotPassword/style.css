@@ -1,0 +1,302 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+  body, p, html, body, h1 {width: 100%;
+  
+      padding: 0;
+      margin: 0;font-family: 'Inter', sans-serif;}
+  a {text-decoration:none}
+  /*font-family: 'Montserrat', sans-serif;*/
+  ::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 8px;
+  }
+  ::-webkit-scrollbar-track {
+  background: #ffffff;
+  }
+  ::-webkit-scrollbar-thumb {
+  background: #d0d0d2;
+  border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  }
+  ol, ul {
+      list-style: none;
+      margin:0;
+      padding:0
+  }                                     
+  .outer_box {
+      float: left;
+      width: 100%;
+      background: #F5F7FA url(../../../assets/img/login-bacground.svg);
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: 72%;
+      background-position: 50% 40%;
+  }
+  .logo_head{
+      float: left;
+      width: 100%;
+  }
+  .signIn_logo_sec {
+      position: relative;
+      padding: 15px 25px;
+      float: left;
+      width: 100%;
+  }
+  
+  
+  .main-login {
+      width:480px;
+      position: absolute !important;
+      top: 50%;
+      left: 50%;
+      margin: auto;
+      transform: translate(-50%, -50%);
+      padding: 35px;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 2px solid #EFF1F3;
+      box-shadow: 0px 4px 16px rgb(116 103 240 / 12%);
+  }
+  .main-login h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      margin-bottom: 20px;
+  }
+  .main-login label {
+      font-size: 16px;
+      margin-bottom: 10px;
+      float: left;
+      width: 100%;
+  }
+  .flex{    font-weight: 500;
+      font-size: 14px;
+      line-height: 160%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  .w_100 a{color: #645CFA;}
+  .w_100 {
+      width: 100%;
+      float: left;
+      padding: 10px 0px;
+  }
+  .inp_box, .w_100 {
+      position: relative;
+  }
+  .inp_box{
+      float: left;
+      width: 100%;
+      border: 1px solid #9D9D9D;
+      border-radius: 5px;
+      margin: auto;
+      padding: 5px 15px;
+      outline: 0;    font-weight: 600;
+      background: #ffffff;
+      font-size: 14px;
+      height: 36px;
+  }
+  .btn_log {
+      height: 48px;
+      width: 100%;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: #2E2E3A;
+      border-radius: 6px;
+      padding: 0;
+      margin: auto;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+  }
+  .btn_log:disabled,
+  button[disabled] {
+    cursor: default;
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+  .btn_reg {height: 40px;
+      width: 100%;
+      font-size: 16px;
+      color: #645CFA;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      border-radius: 6px;
+      padding: 0;
+      margin: auto;
+      border: 1px solid #645CFA;
+      outline: 0;
+      cursor: pointer;
+  }
+  .border { width:100%; text-align:center; border-bottom: 1px solid #000; line-height:0.1em; margin:20px 0 20px;font-size: 12px;float: left;} 
+  .border span { background:#fff; padding:0 10px; }
+  .alert_err{color: #B61E14; border-color: #B61E14;}
+  ::placeholder{color:#9A9AAF;     font-weight: 500;}
+  
+  input:focus::-webkit-input-placeholder { color:transparent; }
+  input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+  input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+  input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+  
+  
+  
+  .Control-label {
+      position: absolute !important;
+      width: auto !important;
+      margin: auto !important;
+      padding: 0 !important;
+      bottom: 10px !important;
+      right: 10px !important;
+      z-index: 99 !important;
+  }
+  .show-password {
+    display: none;
+  }
+  .show-password:checked ~ .ControlInput--password {
+    text-security: disc;
+    -webkit-text-security: disc;
+    -moz-text-security: disc;
+  }
+  .show-password:checked ~ .Control-label--showPassword .svg-toggle-password .closed-eye {
+    opacity: 1;
+    transition: opacity 300ms ease, height 400ms ease;
+    width: 4px;
+    height: 44px;
+  }
+  
+  .svg-toggle-password {
+    fill: #9D9D9D;
+  }
+  .svg-toggle-password .closed-eye {
+    opacity: 0;
+    height: 0;
+  }
+  
+  .Button {
+    padding: 10px;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+  
+  .spinner {
+    -webkit-animation: dash 2s linear infinite;
+            animation: dash 2s linear infinite;
+    -webkit-animation-direction: normal;
+            animation-direction: normal;
+  }
+  
+  @-webkit-keyframes dash {
+    0% {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 150.6 100.4;
+    }
+    50% {
+      stroke-dasharray: 1 250;
+    }
+    100% {
+      stroke-dashoffset: 502;
+      stroke-dasharray: 150.6 100.4;
+    }
+  }
+  
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 150.6 100.4;
+    }
+    50% {
+      stroke-dasharray: 1 250;
+    }
+    100% {
+      stroke-dashoffset: 502;
+      stroke-dasharray: 150.6 100.4;
+    }
+  }
+  @-webkit-keyframes spinner-in {
+    0% {
+      opacity: 0;
+    }
+    20%, 80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes spinner-in {
+    0% {
+      opacity: 0;
+    }
+    20%, 80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  @media only screen and (min-width: 150px) and (max-width: 850px){
+  .outer_box {
+  height: 100%; padding: 10px 15px;
+  }
+  .signIn_logo_sec {
+      position: relative;
+      padding: 15px 0px;
+      float: left;
+      width: 100%;
+  }
+  .main-login {
+      width: 100%;
+      position: relative !important;
+      top: unset;
+      left: unset;
+      float: left;
+      margin: auto;
+      transform: unset;
+      padding: 15px;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 2px solid #EFF1F3;
+      box-shadow: 0px 4px 16px rgb(116 103 240 / 12%);
+  }
+  .w_100 a {
+      color: #645CFA;
+      font-size: 12px;
+  }
+  
+  
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
