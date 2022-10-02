@@ -10,8 +10,6 @@ import msgIcon from '../../assets/img/msg-blk.svg';
 import user2Icon from '../../assets/img/user2.png';
 import user3Icon from '../../assets/img/user3.png';
 
-import './style.css';
-
 const Dashboard = () => {
   const { t } = useTranslation();
 
