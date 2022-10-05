@@ -3,34 +3,24 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import iHealthLogo from '../assets/img/iHealthOX-Logo.svg';
-import bellIcon from '../assets/img/bell-icon.svg';
-import chatIcon from '../assets/img/chat-icon.svg';
 
 import { Grid, Drawer } from 'antd';
 import LeftSidebar from './Leftsidebar';
 import RightSidebar from './RightSidebar';
 
-import { useTranslation } from 'react-i18next';
-import { Select } from 'antd';
 import { useDispatch } from 'react-redux';
 import { notificationPanelHandler } from '../redux/reducer/commonSlice';
 
 import './style.css';
-
-const { Option } = Select;
+import InfoSec from './info_sec';
 
 const HomeLayout = () => {
   const { useBreakpoint } = Grid;
   const screen = useBreakpoint();
-  const { i18n } = useTranslation();
   const dispatch = useDispatch();
   const { user, notificationPanel } = useSelector((state) => state.common);
   const [isShowLeftSidebar, setIsShowLeftSideBar] = useState(false);
   const [isShowNotification, setIsShowNotification] = useState(false);
-
-  const handleChange = (lang) => {
-    i18n.changeLanguage(lang);
-  };
 
   const handleToggle = () => {
     if (screen.xs) {
@@ -47,7 +37,7 @@ const HomeLayout = () => {
   return (
     <div>
       <div className="outer_box">
-        <div className="top_header" style={{ zIndex: 1001 }}>
+        <div className="top_header">
           <div
             className={isShowLeftSidebar ? 'change' : 'menu_icon'}
             onClick={() => {
@@ -65,39 +55,11 @@ const HomeLayout = () => {
             />
           </div>
 
-          <div className="info_sec">
-            <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
-              <img
-                src={bellIcon}
-                onClick={() => handleClickNotification()}
-                className={screen.xs ? 'custom-ic-img' : ''}
-              />
-            </div>
-            <div className={screen.xs ? 'custom-ic' : 'sec_15'}>
-              <img
-                src={chatIcon}
-                className={screen.xs ? 'custom-ic-img' : ''}
-              />
-            </div>
-            <div className="dropdown sec_15">
-              <button className="dropbtn down-arrow">
-                {user && user.name ? user.name.charAt(0).toUpperCase() : ''}
-                {user && user.family_name
-                  ? user.family_name.charAt(0).toUpperCase()
-                  : ''}
-              </button>
-            </div>
-            {!screen.xs ? (
-              <Select
-                defaultValue={i18n.language}
-                style={{ width: 120 }}
-                onChange={handleChange}
-              >
-                <Option value="en">English</Option>
-                <Option value="fr">French</Option>={' '}
-              </Select>
-            ) : null}
-          </div>
+          <InfoSec
+            user={user}
+            screen={screen}
+            handleClickNotification={handleClickNotification}
+          />
         </div>
         <div className="inner_sec">
           <div
@@ -114,9 +76,14 @@ const HomeLayout = () => {
               visible={isShowLeftSidebar}
               onClose={handleToggle}
               width={280}
-              // closable={false}
-              // height={600}
-              headerStyle={{ display: 'none !important' }}
+              title={
+                <div>
+                  <img
+                    src={iHealthLogo}
+                    className={screen.xs ? 'logo_sec_custom' : 'logo_sec'}
+                  />
+                </div>
+              }
             >
               <LeftSidebar display={isShowLeftSidebar} />
             </Drawer>
@@ -130,9 +97,15 @@ const HomeLayout = () => {
             <Drawer
               placement="right"
               visible={isShowNotification}
-              onClose={handleToggle}
+              onClose={handleClickNotification}
               width={330}
-              headerStyle={{ display: 'none !important' }}
+              title={
+                <InfoSec
+                  user={user}
+                  screen={screen}
+                  handleClickNotification={handleClickNotification}
+                />
+              }
             >
               <RightSidebar display={isShowNotification} />
             </Drawer>
